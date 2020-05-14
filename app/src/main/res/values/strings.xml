@@ -7,4 +7,6 @@
     <string name="signup_firstname_ph">first name</string>
     <string name="signup_lastname_ph">last name</string>
     <string name="signup_dob_ph">date of birth</string>
+    <string name="signup_gender_male">male</string>
+    <string name="signup_gender_female">female</string>
 </resources>
