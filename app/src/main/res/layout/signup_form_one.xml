@@ -7,42 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/primaryBlack">
 
-    <EditText
-        android:id="@+id/dob_form"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:alpha="0.8"
-        android:background="@drawable/form_fill_shape"
-        android:ems="10"
-        android:hint="@string/signup_dob_ph"
-        android:inputType="textPersonName"
-        android:paddingBottom="8dp"
-        android:textColorHint="@color/primaryWhite"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dob_legend" />
 
-    <TextView
-        android:id="@+id/dob_legend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="32dp"
-        android:text="Date of birth"
-        android:textColor="@color/primaryWhite"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastname_form" />
 
     <TextView
         android:id="@+id/signup_title"
@@ -59,8 +24,8 @@
 
     <ImageView
         android:id="@+id/back_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="43.5dp"
         android:tint="@color/primaryWhite"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,6 +123,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastname_legend" />
 
+    <EditText
+        android:id="@+id/dob_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/signup_dob_ph"
+        android:inputType="textPersonName"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/primaryWhite"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob_legend" />
+
+    <TextView
+        android:id="@+id/dob_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:text="Date of birth"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_form" />
+
     <TextView
         android:id="@+id/gender_legend"
         android:layout_width="wrap_content"
@@ -215,11 +217,11 @@
         android:id="@+id/next_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:background="@drawable/app_button"
         android:text="NEXT"
         android:textColor="@color/primaryWhite"
