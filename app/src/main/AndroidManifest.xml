@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".SignUpSecondPage"></activity>
+        <activity android:name=".SignUpFirstPage"></activity>
         <activity android:name=".LoginForm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

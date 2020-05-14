@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 import org.json.JSONArray;
@@ -26,7 +27,8 @@ public class LoginForm extends AppCompatActivity {
     private EditText passwordEt;
     private Button submitButton;
     private ImageView showHideButton;
-    boolean isPasswordShown = false;
+    private TextView signupButton;
+    private boolean isPasswordShown = false;
     NetworkConnection networkConnection=null;
 
     @Override
@@ -37,6 +39,7 @@ public class LoginForm extends AppCompatActivity {
         showHideButton = findViewById(R.id.show_password);
         usernameEt = findViewById(R.id.login_username);
         passwordEt = findViewById(R.id.login_password);
+        signupButton = findViewById(R.id.signup_button);
         networkConnection = new NetworkConnection();
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,13 @@ public class LoginForm extends AppCompatActivity {
                     passwordEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     isPasswordShown = false;
                 }
+            }
+        });
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signUpIntent = new Intent(LoginForm.this, SignUpFirstPage.class);
+                startActivity(signUpIntent);
             }
         });
     }
@@ -115,7 +125,7 @@ public class LoginForm extends AppCompatActivity {
                 }
             }
             String hash = getMd5Password(passwordEt.getText().toString());
-            Intent intent = new Intent(LoginForm.this, MainActivity.class);
+            Intent mainIntent = new Intent(LoginForm.this, MainActivity.class);
             if(username.indexOf(usernameEt.getText().toString()) == -1 || password.indexOf(hash) == -1)
             {
                 Toast.makeText(getApplicationContext(), "You have provided wrong credentials! Please try again",
@@ -123,7 +133,7 @@ public class LoginForm extends AppCompatActivity {
             }
             else
             {
-                startActivity(intent);
+                startActivity(mainIntent);
                 Toast.makeText(getApplicationContext(), "Successfully logged in to the system!",
                         Toast.LENGTH_LONG).show();
             }
