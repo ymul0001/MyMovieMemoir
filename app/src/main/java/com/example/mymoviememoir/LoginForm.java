@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mymoviememoir.entities.Person;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,6 +112,9 @@ public class LoginForm extends AppCompatActivity {
             JSONArray jsonArray = null;
             ArrayList<String> username = new ArrayList<>();
             ArrayList<String> password = new ArrayList<>();
+            ArrayList<JSONObject> persons = new ArrayList<>();
+            String hash = getMd5Password(passwordEt.getText().toString());
+            Intent mainIntent = new Intent(LoginForm.this, MainActivity.class);
             try {
                 jsonArray = new JSONArray(jsonResult);
             } catch (JSONException e) {
@@ -120,12 +125,11 @@ public class LoginForm extends AppCompatActivity {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     password.add(obj.get("credHash").toString());
                     username.add(obj.get("credUsername").toString());
+                    persons.add(new JSONObject(obj.get("personId").toString()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            String hash = getMd5Password(passwordEt.getText().toString());
-            Intent mainIntent = new Intent(LoginForm.this, MainActivity.class);
             if(username.indexOf(usernameEt.getText().toString()) == -1 || password.indexOf(hash) == -1)
             {
                 Toast.makeText(getApplicationContext(), "You have provided wrong credentials! Please try again",
@@ -133,6 +137,16 @@ public class LoginForm extends AppCompatActivity {
             }
             else
             {
+                JSONObject person = persons.get(username.indexOf(usernameEt.getText().toString()));
+                String firstName = "";
+                try {
+                    firstName = person.get("personFname").toString();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("firstName", firstName);
+                mainIntent.putExtras(bundle);
                 startActivity(mainIntent);
                 Toast.makeText(getApplicationContext(), "Successfully logged in to the system!",
                         Toast.LENGTH_LONG).show();

@@ -199,12 +199,12 @@ public class SignUpSecondPage extends AppCompatActivity {
             networkConnection.addPerson(createPersonData());
             networkConnection.addCredential(params);
             saveData();
-            String message = "New credential data has been added!";
+            String message = "Successfully signed up! please try to log in";
             return message;
         };
         @Override
         protected void onPostExecute(String result) {
-            Intent toMainPage = new Intent(SignUpSecondPage.this, MainActivity.class);
+            Intent toMainPage = new Intent(SignUpSecondPage.this, LoginForm.class);
             startActivity(toMainPage);
             Toast.makeText(getApplicationContext(), result,
                     Toast.LENGTH_LONG).show();
