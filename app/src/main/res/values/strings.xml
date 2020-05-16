@@ -21,4 +21,5 @@
         <item>Tasmania</item>
         <item>South Australia</item>
     </string-array>
+    <string name="signup_postcode_ph">postal code</string>
 </resources>

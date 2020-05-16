@@ -9,6 +9,8 @@
         android:layout_height="match_parent"
         android:background="@color/primaryBlack">
 
+
+
         <ImageView
             android:id="@+id/back_button2"
             android:layout_width="20dp"
@@ -64,6 +66,7 @@
             android:background="@drawable/form_fill_shape"
             android:ems="10"
             android:hint="@string/signup_address_ph"
+            android:textColor="@color/primaryWhite"
             android:inputType="textPostalAddress"
             android:paddingBottom="8dp"
             android:textColorHint="@color/primaryWhite"
@@ -90,16 +93,48 @@
 
         <Spinner
             android:id="@+id/state_spinner"
-            style="@android:style/Widget.Holo.Light.Spinner"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/primaryWhite"
+            android:background="#dbdbdb"
             android:entries="@array/states"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.128"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/state_legend" />
+
+        <EditText
+            android:id="@+id/postcode_form"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            android:alpha="0.8"
+            android:background="@drawable/form_fill_shape"
+            android:ems="10"
+            android:hint="@string/signup_postcode_ph"
+            android:textColor="@color/primaryWhite"
+            android:inputType="number"
+            android:paddingBottom="8dp"
+            android:textColorHint="@color/primaryWhite"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toEndOf="@+id/state_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/postcode_legend" />
+
+        <TextView
+            android:id="@+id/postcode_legend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/signup_postcode_ph"
+            android:textColor="@color/primaryWhite"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.564"
+            app:layout_constraintStart_toEndOf="@+id/state_legend"
+            app:layout_constraintTop_toBottomOf="@+id/address_form" />
 
         <TextView
             android:id="@+id/email_legend"

@@ -141,7 +141,7 @@
             android:background="@drawable/form_fill_shape"
             android:ems="10"
             android:hint="@string/signup_dob_ph"
-            android:inputType="textPersonName"
+            android:inputType="date"
             android:paddingBottom="8dp"
             android:textColor="@color/primaryWhite"
             android:textColorHint="@color/primaryWhite"

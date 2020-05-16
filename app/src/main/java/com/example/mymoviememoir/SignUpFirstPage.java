@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,7 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -45,7 +48,7 @@ public class SignUpFirstPage extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month,
                                   int day) {
-                String datePattern = "yyyy-MM-dd";
+                String datePattern = "yyyy-MM-dd'T'HH:mm:ssXXX";
                 dobCalendar.set(Calendar.YEAR, year);
                 dobCalendar.set(Calendar.MONTH, month);
                 dobCalendar.set(Calendar.DAY_OF_MONTH, day);
@@ -76,14 +79,30 @@ public class SignUpFirstPage extends AppCompatActivity {
             public void onClick(View v) {
                 int genderId = genderGroup.getCheckedRadioButtonId();
                 genderRadio = findViewById(genderId);
-                Intent toNextSignupForm = new Intent(SignUpFirstPage.this, SignUpSecondPage.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("firstName", firstNameEt.getText().toString());
-                bundle.putString("lastName", lastNameEt.getText().toString());
-                bundle.putString("dob", dobEt.getText().toString());
-                bundle.putString("gender", genderRadio.getText().toString());
-                toNextSignupForm.putExtras(bundle);
-                startActivity(toNextSignupForm);
+                if (firstNameEt.getText().toString().trim().length() > 0 && lastNameEt.getText().toString().trim().length() > 0)
+                {
+                    if (dobEt.getText().toString().trim().length() > 0)
+                    {
+                        Intent toNextSignupForm = new Intent(SignUpFirstPage.this, SignUpSecondPage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("firstName", firstNameEt.getText().toString());
+                        bundle.putString("lastName", lastNameEt.getText().toString());
+                        bundle.putString("dob", dobEt.getText().toString());
+                        bundle.putString("gender", genderRadio.getText().toString());
+                        toNextSignupForm.putExtras(bundle);
+                        startActivity(toNextSignupForm);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Please fill all the forms first",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Please fill all the forms first",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

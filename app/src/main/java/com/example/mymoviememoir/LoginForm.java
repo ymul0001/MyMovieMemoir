@@ -44,8 +44,8 @@ public class LoginForm extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ValidateCredentials validateCredentials = new ValidateCredentials();
-                validateCredentials.execute();
+                GetAllCredentialsTask getAllCredentialsTask = new GetAllCredentialsTask();
+                getAllCredentialsTask.execute();
             }
         });
         showHideButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,7 @@ public class LoginForm extends AppCompatActivity {
         });
     }
 
-    private class ValidateCredentials extends AsyncTask<Void, Void, String> {
+    private class GetAllCredentialsTask extends AsyncTask<Void, Void, String> {
 
         protected String getMd5Password(final String s) {
             final String MD5MODULE = "MD5";
