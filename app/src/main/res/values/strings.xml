@@ -22,4 +22,7 @@
         <item>South Australia</item>
     </string-array>
     <string name="signup_postcode_ph">postal code</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+    <string name="topfive_label">Your top 5 movies in 2020</string>
 </resources>

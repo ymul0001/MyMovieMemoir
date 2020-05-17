@@ -7,4 +7,6 @@
     <color name="secondaryRed">#660207</color>
     <color name="primaryWhite">#FFFFFF</color>
     <color name="primaryBlack">#000000</color>
+    <color name="secondaryBlack">#151414</color>
+    <color name="TertiaryBlack">#212020</color>
 </resources>
