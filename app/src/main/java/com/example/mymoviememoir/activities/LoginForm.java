@@ -1,4 +1,4 @@
-package com.example.mymoviememoir;
+package com.example.mymoviememoir.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mymoviememoir.entities.Person;
+import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 import org.json.JSONArray;
 import org.json.JSONException;

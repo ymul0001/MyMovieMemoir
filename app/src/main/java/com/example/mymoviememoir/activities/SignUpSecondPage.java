@@ -1,4 +1,4 @@
-package com.example.mymoviememoir;
+package com.example.mymoviememoir.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 
 import java.security.MessageDigest;

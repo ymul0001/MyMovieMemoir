@@ -1,4 +1,4 @@
-package com.example.mymoviememoir;
+package com.example.mymoviememoir.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,13 +17,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.adapter.DashboardAdapter;
 import com.example.mymoviememoir.model.TopfiveResult;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,6 +54,9 @@ public class DashboardFragment extends Fragment {
         dateTv = view.findViewById(R.id.dashboard_date);
         itemsRv = view.findViewById(R.id.topfive_list);
         networkConnection = new NetworkConnection();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd/MM/yyyy");
+        Date sysdate = new Date();
+        dateTv.setText(sdf.format(sysdate));
         GetTopFiveMoviesTask getTopFiveMoviesTask = new GetTopFiveMoviesTask();
         getTopFiveMoviesTask.execute();
         return view;

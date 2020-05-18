@@ -1,4 +1,4 @@
-package com.example.mymoviememoir;
+package com.example.mymoviememoir.activities;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.mymoviememoir.R;
+import com.example.mymoviememoir.fragments.DashboardFragment;
+import com.example.mymoviememoir.fragments.MapsFragment;
+import com.example.mymoviememoir.fragments.MemoirFragment;
+import com.example.mymoviememoir.fragments.ReportsFragment;
+import com.example.mymoviememoir.fragments.SearchFragment;
+import com.example.mymoviememoir.fragments.WatchListFragment;
 import com.google.android.material.navigation.NavigationView;
 
 

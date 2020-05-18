@@ -25,4 +25,6 @@
     <string name="Open">open</string>
     <string name="Close">close</string>
     <string name="topfive_label">Your top 5 movies in 2020</string>
+    <string name="search_form_hint">Enter a movie</string>
+    <string name="search_button">search!</string>
 </resources>

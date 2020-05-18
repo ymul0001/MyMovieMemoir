@@ -1,8 +1,5 @@
 package com.example.mymoviememoir.networkconnection;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.mymoviememoir.entities.Credential;
@@ -16,7 +13,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static android.content.Context.MODE_PRIVATE;
 
 public class NetworkConnection {
     private OkHttpClient client = null;
@@ -27,6 +23,8 @@ public class NetworkConnection {
         client= new OkHttpClient();
     }
 
+    private static final String MOVIE_API_KEY = "87c3db1c6af7a7af863738f4711bc40f";
+    private static final String BASE_MOVIEAPI_URL = "https://api.themoviedb.org/3/search/movie?";
     private static final String BASE_URL =
             "http://192.168.18.8:8080/MyMovieMemoir1.0/webresources/";
 
@@ -48,6 +46,19 @@ public class NetworkConnection {
         final String methodPath = "moviememoir.memoir/findFiveMoviesWithHighestRatingsInRecentYear/" + id;
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getMoviesFromApi(String query){
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_MOVIEAPI_URL + "api_key=" + MOVIE_API_KEY + "&query=" + query);
         Request request = builder.build();
         try {
             Response response = client.newCall(request).execute();

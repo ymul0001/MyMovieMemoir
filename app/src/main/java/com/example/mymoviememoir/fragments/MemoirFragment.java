@@ -1,4 +1,4 @@
-package com.example.mymoviememoir;
+package com.example.mymoviememoir.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,15 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ReportsFragment extends Fragment {
-    public ReportsFragment(){
+import com.example.mymoviememoir.R;
+
+public class MemoirFragment extends Fragment {
+    public MemoirFragment(){
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reports_fragment, container, false);
+        View view = inflater.inflate(R.layout.memoir_fragment, container, false);
         return view;
     }
 }
