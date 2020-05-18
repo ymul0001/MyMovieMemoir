@@ -50,7 +50,6 @@ public class DashboardFragment extends Fragment {
         dateTv = view.findViewById(R.id.dashboard_date);
         itemsRv = view.findViewById(R.id.topfive_list);
         networkConnection = new NetworkConnection();
-
         GetTopFiveMoviesTask getTopFiveMoviesTask = new GetTopFiveMoviesTask();
         getTopFiveMoviesTask.execute();
         return view;
@@ -59,13 +58,15 @@ public class DashboardFragment extends Fragment {
     private class GetTopFiveMoviesTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
-            String result = networkConnection.getTopFiveMovies(getArguments().getInt("personId"));
+            SharedPreferences sf = getContext().getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
+            String result = networkConnection.getTopFiveMovies(sf.getInt("personId", 2));
             Log.i("string", result);
             return result;
         }
 
         @Override
         protected void onPostExecute(String jsonResult) {
+            SharedPreferences sf = getContext().getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
             ArrayList<TopfiveResult> topfiveResults = new ArrayList<>();
             try {
                 jsonArray = new JSONArray(jsonResult);
@@ -89,7 +90,7 @@ public class DashboardFragment extends Fragment {
                     LinearLayoutManager.VERTICAL));
             itemsRv.setAdapter(adapter);
             itemsRv.setLayoutManager(layoutManager);
-            String firstName = getArguments().getString("firstName");
+            String firstName = sf.getString("firstName", "No name!");
             welcomeTv.setText("Hello " + firstName + "!");
         }
     }

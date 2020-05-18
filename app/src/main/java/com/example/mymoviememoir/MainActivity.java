@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment dashBoardFragment = new DashboardFragment();
         Intent fromLogin = getIntent();
         Bundle bundle = fromLogin.getExtras();
+        saveData(bundle);
         Toolbar toolbar = findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.app_drawer_layout);
@@ -75,6 +77,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         dashBoardFragment.setArguments(bundle);
         replaceFragment(dashBoardFragment);
+    }
+
+    protected void saveData(Bundle bundle){
+        SharedPreferences sf = getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sf.edit();
+        editor.putString("firstName", bundle.getString("firstName"));
+        editor.putInt("personId", bundle.getInt("personId"));
+        editor.apply();
 
     }
 
