@@ -9,4 +9,5 @@
     <color name="primaryBlack">#000000</color>
     <color name="secondaryBlack">#151414</color>
     <color name="TertiaryBlack">#212020</color>
+    <color name="topfiveitems">#282828</color>
 </resources>

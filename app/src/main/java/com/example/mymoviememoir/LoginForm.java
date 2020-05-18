@@ -139,13 +139,16 @@ public class LoginForm extends AppCompatActivity {
             {
                 JSONObject person = persons.get(username.indexOf(usernameEt.getText().toString()));
                 String firstName = "";
+                int personId = 0;
                 try {
                     firstName = person.get("personFname").toString();
+                    personId = (Integer) person.get("personId");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 Bundle bundle = new Bundle();
                 bundle.putString("firstName", firstName);
+                bundle.putInt("personId", personId);
                 mainIntent.putExtras(bundle);
                 startActivity(mainIntent);
                 Toast.makeText(getApplicationContext(), "Successfully logged in to the system!",
