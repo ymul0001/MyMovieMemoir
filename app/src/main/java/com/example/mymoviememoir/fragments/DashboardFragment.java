@@ -66,7 +66,7 @@ public class DashboardFragment extends Fragment {
         @Override
         protected String doInBackground(Void... params) {
             SharedPreferences sf = getContext().getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
-            String result = networkConnection.getTopFiveMovies(sf.getInt("personId", 2));
+            String result = networkConnection.getTopFiveMovies(sf.getInt("personId", 0));
             Log.i("string", result);
             return result;
         }

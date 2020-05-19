@@ -24,6 +24,7 @@ public class NetworkConnection {
     }
 
     private static final String MOVIE_API_KEY = "87c3db1c6af7a7af863738f4711bc40f";
+    private static final String GEO_API_KEY = "AIzaSyAYyX5Shw-E8RY_Qo-TjYHvfQ8obbiqmzE";
     private static final String BASE_MOVIEAPI_URL = "https://api.themoviedb.org/3/search/movie?";
     private static final String BASE_URL =
             "http://192.168.18.8:8080/MyMovieMemoir1.0/webresources/";
@@ -55,6 +56,48 @@ public class NetworkConnection {
         }
         return results;
     }
+
+    public String getPersonById(int id){
+        final String methodPath = "moviememoir.person/" + id;
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getAllCinemas(){
+        final String methodPath = "moviememoir.cinema";
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+   /* public String getLocationCoordinate(String address){
+        final String methodPath = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + GEO_API_KEY;
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }*/
 
     public String getMoviesFromApi(String query){
         Request.Builder builder = new Request.Builder();

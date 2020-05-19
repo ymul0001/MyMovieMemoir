@@ -3,8 +3,9 @@
 package="com.example.mymoviememoir">
 
 <uses-permission android:name="android.permission.INTERNET" />
-
-<application
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -12,6 +13,7 @@ package="com.example.mymoviememoir">
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar"
     android:usesCleartextTraffic="true">
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAYyX5Shw-E8RY_Qo-TjYHvfQ8obbiqmzE"/>
     <activity android:name=".activities.SignUpSecondPage"></activity>
     <activity android:name=".activities.SignUpFirstPage"></activity>
     <activity android:name=".activities.LoginForm">
