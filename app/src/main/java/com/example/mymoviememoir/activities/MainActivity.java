@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putString("firstName", bundle.getString("firstName"));
         editor.putInt("personId", bundle.getInt("personId"));
         editor.apply();
-
     }
 
     @Override
