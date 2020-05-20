@@ -85,8 +85,8 @@ public class NetworkConnection {
         return results;
     }
 
-   /* public String getLocationCoordinate(String address){
-        final String methodPath = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + GEO_API_KEY;
+    public String getMoviesByPostcode(int personId, String startDate, String endDate){
+        final String methodPath = "moviememoir.memoir/findTotalNumberOfMoviesPerPostcode/" + personId + "/" + startDate + "/" + endDate;
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_URL + methodPath);
         Request request = builder.build();
@@ -97,7 +97,7 @@ public class NetworkConnection {
             e.printStackTrace();
         }
         return results;
-    }*/
+    }
 
     public String getMoviesFromApi(String query){
         Request.Builder builder = new Request.Builder();

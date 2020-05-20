@@ -4,14 +4,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primaryBlack">
 
-    <TextView
-        android:id="@+id/tv"
+    <ImageView
+        android:id="@+id/enddate_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reports"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enddate_form"
+        app:layout_constraintTop_toBottomOf="@+id/report_title"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <ImageView
+        android:id="@+id/startdate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toEndOf="@+id/startdate_form"
+        app:layout_constraintTop_toBottomOf="@+id/report_title"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <EditText
+        android:id="@+id/enddate_form"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="36dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/pie_enddate"
+        android:inputType="date"
+        android:paddingBottom="8dp"
+        android:textColor="@color/primaryWhite"
+        android:textColorHint="@color/primaryWhite"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/startdate_button"
+        app:layout_constraintTop_toBottomOf="@+id/report_title" />
+
+    <EditText
+        android:id="@+id/startdate_form"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/pie_startdate"
+        android:inputType="date"
+        android:paddingBottom="8dp"
+        android:textColor="@color/primaryWhite"
+        android:textColorHint="@color/primaryWhite"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report_title" />
+
+    <TextView
+        android:id="@+id/report_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/report_title_pie"
+        android:textColor="@color/primaryRed"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:background="@color/primaryWhite"
+        android:id="@+id/pie_chart"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pie_button">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
+    <Button
+        android:id="@+id/pie_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/app_button"
+        android:text="@string/pie_button"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enddate_form" />
 </androidx.constraintlayout.widget.ConstraintLayout>

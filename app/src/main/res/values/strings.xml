@@ -28,4 +28,8 @@
     <string name="search_form_hint">Enter a movie</string>
     <string name="search_button">search!</string>
     <string name="map_name">Cinema location</string>
+    <string name="report_title_pie">Total movies per suburb</string>
+    <string name="pie_startdate">enter start date</string>
+    <string name="pie_enddate">enter end date</string>
+    <string name="pie_button">generate chart!</string>
 </resources>
