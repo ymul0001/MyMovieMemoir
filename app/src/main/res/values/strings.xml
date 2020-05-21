@@ -41,4 +41,11 @@
         <item>2019</item>
         <item>2020</item>
     </string-array>
+    <string name="genre_title">Genre:</string>
+    <string name="release_title">Release:</string>
+    <string name="country_title">Country:</string>
+    <string name="director_title">Director(s):</string>
+    <string name="synopsis_title">Synopsis:</string>
+    <string name="watchlist_button">add to watchlist!</string>
+    <string name="memoir_button">add to memoir!</string>
 </resources>

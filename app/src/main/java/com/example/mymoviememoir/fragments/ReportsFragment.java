@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
