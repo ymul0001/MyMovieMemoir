@@ -116,18 +116,23 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
             userLatitude = coordinates.latitude;
             userLongitude = coordinates.longitude;
+            Log.d("string", userLatitude + "," + userLongitude);
             return "person location has been retrieved";
         }
 
         @Override
         protected void onPostExecute(String message) {
             LatLng userLocation = new LatLng(userLatitude, userLongitude);
-            gMaps.addMarker(mo.position(userLocation).title("My location"));
-            float zoomLevel = (float) 15.0;
-            gMaps.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,
-                    zoomLevel));
-            Toast.makeText(getContext(), message,
-                    Toast.LENGTH_LONG).show();
+            if (userLocation != null){
+                Log.d("string", userLocation.toString());
+                mo.position(userLocation).title("My location!");
+                gMaps.addMarker(mo);
+                float zoomLevel = (float) 15.0;
+                gMaps.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,
+                        zoomLevel));
+                Toast.makeText(getContext(), message,
+                        Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -161,8 +166,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         protected void onPostExecute(String message){
-            Toast.makeText(getContext(), message,
-                    Toast.LENGTH_LONG).show();
             ArrayList<LatLng> cinemaCoordinates = new ArrayList<>();
             for(int i = 0; i < cinemaLatitude.size(); i++)
             {
@@ -172,6 +175,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 mo.position(coor).title(cinemaNames.get(cinemaCoordinates.indexOf(coor))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                 gMaps.addMarker(mo);
             }
+            Toast.makeText(getContext(), message,
+                    Toast.LENGTH_LONG).show();
         }
     }
 

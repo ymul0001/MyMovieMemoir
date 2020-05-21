@@ -43,6 +43,21 @@ public class NetworkConnection {
         return results;
     }
 
+    public String getMoviesPerMonth (int personId, String year){
+        final String methodPath = "moviememoir.memoir/findTotalNumberOfMoviesPerMonth/" + personId + "/" + year;
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+
+    }
+
     public String getTopFiveMovies(int id){
         final String methodPath = "moviememoir.memoir/findFiveMoviesWithHighestRatingsInRecentYear/" + id;
         Request.Builder builder = new Request.Builder();

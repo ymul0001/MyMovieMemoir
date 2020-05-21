@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,12 +23,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
@@ -45,10 +52,16 @@ public class ReportsFragment extends Fragment {
     private ImageView endDateButton;
     private PieChart pieChart;
     private Button generatePieButton;
+    private Button generateBarButton;
+    private Spinner yearSpinner;
+    private BarChart barChart;
     private Calendar startDateCalendar;
     private Calendar endDateCalendar;
     private ArrayList<Integer> postalCodes;
     private ArrayList<Integer> totalNumberOfMovies;
+    private ArrayList<String> months;
+    private ArrayList<Float> totalNumberOfMoviesBar;
+    ArrayList<Integer> dataColors;
     private int sumTotalOfMovies;
     NetworkConnection networkConnection  = null;
     public ReportsFragment(){
@@ -60,20 +73,18 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.reports_fragment, container, false);
         networkConnection = new NetworkConnection();
+        dataColors = addChartColor();
         startdateEt = view.findViewById(R.id.startdate_form);
         enddateEt = view.findViewById(R.id.enddate_form);
         startDateButton = view.findViewById(R.id.startdate_button);
         endDateButton = view.findViewById(R.id.enddate_button);
         generatePieButton = view.findViewById(R.id.pie_button);
+        generateBarButton = view.findViewById(R.id.bar_button);
+        yearSpinner  = view.findViewById(R.id.chart_spinner);
         startDateCalendar = Calendar.getInstance();
         endDateCalendar = Calendar.getInstance();
         pieChart = view.findViewById(R.id.pie_chart);
-        Description description = new Description(); description.setTextColor(ColorTemplate.rgb("#ffffff"));
-        description.setText("Pie chart data");
-        pieChart.setDescription(description);
-        pieChart.setRotationEnabled(true);
-        pieChart.setHoleRadius(0f);
-        pieChart.setTransparentCircleAlpha(0);
+        barChart = view.findViewById(R.id.bar_chart);
         final DatePickerDialog.OnDateSetListener startDate = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month,
@@ -129,6 +140,15 @@ public class ReportsFragment extends Fragment {
             }
         });
 
+        generateBarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String year = yearSpinner.getSelectedItem().toString();
+                String[] yearArg = new String[]{year};
+                GetMoviesByMonthTask getMoviesByMonthTask = new GetMoviesByMonthTask();
+                getMoviesByMonthTask.execute(yearArg);
+            }
+        });
         return view;
     }
 
@@ -162,7 +182,75 @@ public class ReportsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String jsonResult) {
+            Description description = new Description();
+            description.setTextColor(ColorTemplate.rgb("#ffffff"));
+            description.setText("Pie chart data");
+            pieChart.setDescription(description);
+            pieChart.setRotationEnabled(true);
+            pieChart.setHoleRadius(0f);
+            pieChart.setTransparentCircleAlpha(0);
+            pieChart.setDescription(description);
+            pieChart.setRotationEnabled(true);
+            pieChart.setHoleRadius(0f);
+            pieChart.setTransparentCircleAlpha(0);
+            pieChart.animateY(1000);
+            pieChart.setDrawEntryLabels(false);
+
+            //add Legend to chart
+            Legend pieLegend = pieChart.getLegend();
+            pieLegend.setForm(Legend.LegendForm.CIRCLE);
+            pieLegend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+            pieLegend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+            pieLegend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
             addDataSet();
+        }
+    }
+
+    private class GetMoviesByMonthTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            months = new ArrayList<>();
+            totalNumberOfMoviesBar = new ArrayList<>();
+            SharedPreferences sf = getContext().getSharedPreferences("dashboardPreferences", Context.MODE_PRIVATE);
+            String result = networkConnection.getMoviesPerMonth(sf.getInt("personId", 1), params[0]);
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            for(int i = 0; i < jsonArray.length(); i++)
+            {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    months.add(obj.getString("month"));
+                    totalNumberOfMoviesBar.add((float)obj.getInt("totalMovies"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            Log.d("string", months.toString());
+            Log.d("string", totalNumberOfMoviesBar.toString());
+            return "The data has been successfully loaded!";
+        }
+
+        @Override
+        protected void onPostExecute(String jsonResult) {
+            Description description = new Description();
+            description.setTextColor(ColorTemplate.rgb("#ffffff"));
+            description.setText("Bar chart data");
+            barChart.setDrawBarShadow(false);
+            barChart.setDrawValueAboveBar(true);
+            barChart.setFitBars(true);
+            XAxis xAxis = barChart.getXAxis();
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(months));
+            xAxis.setPosition(XAxis.XAxisPosition.TOP);
+            xAxis.setDrawGridLines(false);
+            xAxis.setDrawAxisLine(false);
+            xAxis.setGranularity(1f);
+            xAxis.setLabelCount(months.size());
+            xAxis.setLabelRotationAngle(325);
+            addBarDataSet();
         }
     }
 
@@ -170,7 +258,6 @@ public class ReportsFragment extends Fragment {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         ArrayList<Float> percentage = new ArrayList<>();
         ArrayList<Integer> usedColors = new ArrayList<>();
-        ArrayList<Integer> dataColors = addCinemaChartColor();
         sumTotalOfMovies = 0;
         for (int number:totalNumberOfMovies)
         {
@@ -195,18 +282,24 @@ public class ReportsFragment extends Fragment {
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
-        pieChart.animateY(1000);
-        pieChart.setDrawEntryLabels(false);
-
-        //add Legend to chart
-        Legend pieLegend = pieChart.getLegend();
-        pieLegend.setForm(Legend.LegendForm.CIRCLE);
-        pieLegend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        pieLegend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        pieLegend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
     }
 
-    private ArrayList<Integer> addCinemaChartColor(){
+    private void addBarDataSet(){
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<Integer> usedColors = new ArrayList<>();
+        for (int i = 0; i < months.size(); i++){
+            barEntries.add(new BarEntry(i, totalNumberOfMoviesBar.get(i)));
+            usedColors.add(dataColors.get(i));
+        }
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Total number of movies");
+        barDataSet.setColors(usedColors);
+        BarData data = new BarData(barDataSet);
+        data.setBarWidth(0.4f);
+        barChart.setData(data);
+        barChart.invalidate();
+    }
+
+    private ArrayList<Integer> addChartColor(){
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.argb(250, 5, 5,1));
         colors.add(Color.argb(77, 44, 44,1));
@@ -218,6 +311,8 @@ public class ReportsFragment extends Fragment {
         colors.add(Color.argb(127, 42, 189,1));
         colors.add(Color.argb(156, 76, 51,1));
         colors.add(Color.argb(170, 173, 173,1));
+        colors.add(Color.argb(191, 63, 191,1));
+        colors.add(Color.argb(63, 121, 191,1));
         return colors;
     }
 }
