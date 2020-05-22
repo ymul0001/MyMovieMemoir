@@ -1,9 +1,11 @@
 package com.example.mymoviememoir.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,29 +13,39 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mymoviememoir.R;
+import com.example.mymoviememoir.activities.MovieDetails;
+import com.example.mymoviememoir.fragments.SearchFragment;
 import com.example.mymoviememoir.model.MovieResult;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>  {
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private RecyclerViewClickListener listener;
+    private List<MovieResult> movieItems;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView movieIv;
         public TextView movieTitleTv;
         public TextView movieReleaseTv;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
             movieIv = itemView.findViewById(R.id.moviedb_image);
             movieTitleTv = itemView.findViewById(R.id.moviedb_title);
             movieReleaseTv =itemView.findViewById(R.id.moviedb_releasedate);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
-    private List<MovieResult> movieItems;
-    public SearchAdapter(List<MovieResult> movieResults){
+
+    public SearchAdapter(List<MovieResult> movieResults, RecyclerViewClickListener listener){
         this.movieItems = movieResults;
+        this.listener = listener;
     }
 
     public void addMovies(List<MovieResult> resultItems) {
@@ -43,6 +55,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     public int getItemCount(){
         return movieItems.size();
+    }
+
+    //build a custom onClickListener for the recycle view
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
     }
 
     public SearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,

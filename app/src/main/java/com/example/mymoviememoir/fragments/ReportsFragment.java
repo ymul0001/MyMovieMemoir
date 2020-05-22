@@ -60,7 +60,6 @@ public class ReportsFragment extends Fragment {
     private ArrayList<Integer> totalNumberOfMovies;
     private ArrayList<String> months;
     private ArrayList<Float> totalNumberOfMoviesBar;
-    ArrayList<Integer> dataColors;
     private int sumTotalOfMovies;
     NetworkConnection networkConnection  = null;
     public ReportsFragment(){
@@ -72,7 +71,6 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.reports_fragment, container, false);
         networkConnection = new NetworkConnection();
-        dataColors = addChartColor();
         startdateEt = view.findViewById(R.id.startdate_form);
         enddateEt = view.findViewById(R.id.enddate_form);
         startDateButton = view.findViewById(R.id.startdate_button);
@@ -256,7 +254,6 @@ public class ReportsFragment extends Fragment {
     private void addDataSet(){
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         ArrayList<Float> percentage = new ArrayList<>();
-        ArrayList<Integer> usedColors = new ArrayList<>();
         sumTotalOfMovies = 0;
         for (int number:totalNumberOfMovies)
         {
@@ -269,15 +266,14 @@ public class ReportsFragment extends Fragment {
         {
             if(percentage.get(i) > 0f)
             {
-                pieEntries.add(new PieEntry(percentage.get(i), String.valueOf(postalCodes.get(i))));
-                usedColors.add(dataColors.get(i));
+                pieEntries.add(new PieEntry(percentage.get(i), String.valueOf(postalCodes.get(i))));;
             }
         }
 
         //loading data to the pie chart
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "Total number of movies in %");
         pieDataSet.setValueTextSize(14);
-        pieDataSet.setColors(usedColors);
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
@@ -285,33 +281,14 @@ public class ReportsFragment extends Fragment {
 
     private void addBarDataSet(){
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        ArrayList<Integer> usedColors = new ArrayList<>();
         for (int i = 0; i < months.size(); i++){
             barEntries.add(new BarEntry(i, totalNumberOfMoviesBar.get(i)));
-            usedColors.add(dataColors.get(i));
         }
         BarDataSet barDataSet = new BarDataSet(barEntries, "Total number of movies");
-        barDataSet.setColors(usedColors);
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         BarData data = new BarData(barDataSet);
         data.setBarWidth(0.4f);
         barChart.setData(data);
         barChart.invalidate();
-    }
-
-    private ArrayList<Integer> addChartColor(){
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.argb(250, 5, 5,1));
-        colors.add(Color.argb(77, 44, 44,1));
-        colors.add(Color.argb(196, 134, 20,1));
-        colors.add(Color.argb(203, 240, 38,1));
-        colors.add(Color.argb(38, 150, 100,1));
-        colors.add(Color.argb(47, 147, 196,1));
-        colors.add(Color.argb(32, 30, 176,1));
-        colors.add(Color.argb(127, 42, 189,1));
-        colors.add(Color.argb(156, 76, 51,1));
-        colors.add(Color.argb(170, 173, 173,1));
-        colors.add(Color.argb(191, 63, 191,1));
-        colors.add(Color.argb(63, 121, 191,1));
-        return colors;
     }
 }

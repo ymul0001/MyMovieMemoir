@@ -1,5 +1,6 @@
 package com.example.mymoviememoir.fragments;
 
+import android.content.Intent;
 import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mymoviememoir.R;
+import com.example.mymoviememoir.activities.MovieDetails;
 import com.example.mymoviememoir.adapter.DashboardAdapter;
 import com.example.mymoviememoir.adapter.SearchAdapter;
 import com.example.mymoviememoir.model.MovieResult;
@@ -34,6 +36,7 @@ public class SearchFragment extends Fragment {
     private EditText searchEt;
     private Button searchButton;
     private RecyclerView movieRv;
+    private SearchAdapter.RecyclerViewClickListener listener;
     NetworkConnection networkConnection = null;
     private RecyclerView.Adapter itemsAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -103,11 +106,23 @@ public class SearchFragment extends Fragment {
             else{
                 Toast.makeText(getContext(), "No movies found! please enter another keywords", Toast.LENGTH_LONG).show();
             }
-            adapter = new SearchAdapter(movieResults);
+            setOnClickListener();
+            adapter = new SearchAdapter(movieResults, listener);
             layoutManager = new LinearLayoutManager(getContext());
             movieRv.addItemDecoration(new DividerItemDecoration(getContext(),
                     LinearLayoutManager.VERTICAL));
             movieRv.setAdapter(adapter);
             movieRv.setLayoutManager(layoutManager);
         }
-}}
+}
+
+    private void setOnClickListener() {
+        listener = new SearchAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent toMovieDetails = new Intent(getContext(), MovieDetails.class);
+                startActivity(toMovieDetails);
+            }
+        };
+    }
+}
