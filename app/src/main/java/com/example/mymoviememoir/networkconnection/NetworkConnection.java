@@ -24,10 +24,9 @@ public class NetworkConnection {
     }
 
     private static final String MOVIE_API_KEY = "87c3db1c6af7a7af863738f4711bc40f";
-    private static final String GEO_API_KEY = "AIzaSyAYyX5Shw-E8RY_Qo-TjYHvfQ8obbiqmzE";
     private static final String BASE_MOVIEAPI_URL = "https://api.themoviedb.org/3/search/movie?";
-    private static final String BASE_URL =
-            "http://192.168.18.8:8080/MyMovieMemoir1.0/webresources/";
+    private static final String BASE_MOVIEDETAILS_URL = "https://api.themoviedb.org/3/movie/";
+    private static final String BASE_URL = "http://192.168.18.8:8080/MyMovieMemoir1.0/webresources/";
 
     public String getAllCredentials(){
         final String methodPath = "moviememoir.credential";
@@ -117,6 +116,19 @@ public class NetworkConnection {
     public String getMoviesFromApi(String query){
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_MOVIEAPI_URL + "api_key=" + MOVIE_API_KEY + "&query=" + query);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getMovieDetails(int id){
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_MOVIEDETAILS_URL + id + "?api_key=" + MOVIE_API_KEY + "&append_to_response=credits");
         Request request = builder.build();
         try {
             Response response = client.newCall(request).execute();

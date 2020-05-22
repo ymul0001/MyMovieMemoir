@@ -95,7 +95,7 @@ public class SearchFragment extends Fragment {
                     try {
                         obj = jsonArray.getJSONObject(i);
                         if (!obj.getString("release_date").equals("")) {
-                            MovieResult item = new MovieResult(obj.getString("poster_path"), obj.getString("title"), obj.getString("release_date"));
+                            MovieResult item = new MovieResult(obj.getInt("id"), obj.getString("poster_path"), obj.getString("title"), obj.getString("release_date"));
                             movieResults.add(item);
                         }
                     } catch (JSONException e) {
@@ -106,7 +106,7 @@ public class SearchFragment extends Fragment {
             else{
                 Toast.makeText(getContext(), "No movies found! please enter another keywords", Toast.LENGTH_LONG).show();
             }
-            setOnClickListener();
+            setOnClickListener(movieResults);
             adapter = new SearchAdapter(movieResults, listener);
             layoutManager = new LinearLayoutManager(getContext());
             movieRv.addItemDecoration(new DividerItemDecoration(getContext(),
@@ -116,11 +116,15 @@ public class SearchFragment extends Fragment {
         }
 }
 
-    private void setOnClickListener() {
+    private void setOnClickListener(final ArrayList<MovieResult> results) {
         listener = new SearchAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Intent toMovieDetails = new Intent(getContext(), MovieDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("movieId", results.get(position).getMovieId());
+                toMovieDetails.putExtras(bundle);
+                Log.d("string", String.valueOf(position));
                 startActivity(toMovieDetails);
             }
         };

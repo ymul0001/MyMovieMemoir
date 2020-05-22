@@ -48,6 +48,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.listener = listener;
     }
 
+    //can comment this code
     public void addMovies(List<MovieResult> resultItems) {
         this.movieItems = resultItems;
         notifyDataSetChanged();
