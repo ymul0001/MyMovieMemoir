@@ -23,15 +23,37 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.1.0'
+
+    //add dependencies for ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
+
+    //add dependencies for the room database SQlite
+    implementation 'androidx.room:room-runtime:2.2.5'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+
+
+    //add dependencies for the constraint layout and recyclerView
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //add dependencies for the picasso library, which is used to convert images to bitmap
     implementation 'com.squareup.picasso:picasso:2.71828'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.android.material:material:1.0.0'
+
+    //add dependencies for the okhttp library, in order to make connection to the API
     implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+
+    //add dependencies for the MPchart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //add dependencies for the gson, for the POST purposes
     implementation 'com.google.code.gson:gson:2.3'
+
+    //add dependencies for the gmaps
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }
