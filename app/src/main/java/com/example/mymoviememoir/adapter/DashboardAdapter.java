@@ -22,8 +22,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            titleTv = itemView.findViewById(R.id.item_title);
-            releaseDateTv = itemView.findViewById(R.id.item_date);
+            titleTv = itemView.findViewById(R.id.watch_title);
+            releaseDateTv = itemView.findViewById(R.id.watch_release);
             ratingTv =itemView.findViewById(R.id.item_rating);
         }
     }

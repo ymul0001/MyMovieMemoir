@@ -1,6 +1,5 @@
 package com.example.mymoviememoir.fragments;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,7 +51,7 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.dashboard_fragment, container, false);
         welcomeTv = view.findViewById(R.id.dashboard_welcome);
         dateTv = view.findViewById(R.id.dashboard_date);
-        itemsRv = view.findViewById(R.id.topfive_list);
+        itemsRv = view.findViewById(R.id.watchlist_rv);
         networkConnection = new NetworkConnection();
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd/MM/yyyy");
         Date sysdate = new Date();
