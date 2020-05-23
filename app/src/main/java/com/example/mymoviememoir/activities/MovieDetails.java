@@ -3,20 +3,30 @@ package com.example.mymoviememoir.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.mymoviememoir.R;
+import com.example.mymoviememoir.entities.WatchList;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
+import com.example.mymoviememoir.viewmodel.WatchlistViewModel;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class MovieDetails extends AppCompatActivity {
     private ImageView movieIv;
@@ -29,20 +39,64 @@ public class MovieDetails extends AppCompatActivity {
     private TextView castTv;
     private Button watchListButton;
     private Button memoirButton;
+    private WatchlistViewModel watchlistViewModel;
     private int movieId;
     private NetworkConnection networkConnection;
+    /*private List<WatchList> watchLists;*/
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details);
-        networkConnection = new NetworkConnection();
+        movieIv = findViewById(R.id.movie_poster);
+        genreTv = findViewById(R.id.genre_data);
+        releaseTv = findViewById(R.id.release_data);
+        countryTv = findViewById(R.id.country_data);
+        directorTv = findViewById(R.id.director_data);
+        synopsisTv = findViewById(R.id.synopsis_data);
         watchListButton = findViewById(R.id.watchlist_button);
         memoirButton = findViewById(R.id.memoir_button);
+        castTv = findViewById(R.id.cast_data);
+        networkConnection = new NetworkConnection();
+
+        //get movie ids for getting movie details
         Intent fromSearchFragment = getIntent();
         Bundle bundle = fromSearchFragment.getExtras();
         movieId = bundle.getInt("movieId");
+
+        //initialize the ViewModel
+        watchlistViewModel = new ViewModelProvider(this).get(WatchlistViewModel.class);
+        watchlistViewModel.initializeVars(getApplication());
+
+
+
+        //get movie details
         GetMovieDetailsTask getMovieDetailsTask = new GetMovieDetailsTask();
         getMovieDetailsTask.execute();
+
+
+        watchListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+                Date date = new Date();
+                String addedDate = dateFormat.format(date);
+                String addedTime = timeFormat.format(date);
+                if (watchlistViewModel.getWatchListById(movieId) != null)
+                {
+                    Toast.makeText(getApplicationContext(), "It is already in the watchlist!",
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
+                    WatchList newWatchList = new WatchList(movieId, titleTv.getText().toString(), releaseTv.getText().toString(), addedDate, addedTime);
+                    watchlistViewModel.insert(newWatchList);
+                    Toast.makeText(getApplicationContext(), "Successfully added the movie to watchlist!",
+                            Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        });
     }
 
     private class GetMovieDetailsTask extends AsyncTask<Void, Void, String> {
@@ -86,14 +140,6 @@ public class MovieDetails extends AppCompatActivity {
                         directorsStr = directorsStr + crew.getString("name") + "; ";
                     }
                 }
-                movieIv = findViewById(R.id.movie_poster);
-                genreTv = findViewById(R.id.genre_data);
-                releaseTv = findViewById(R.id.release_data);
-                countryTv = findViewById(R.id.country_data);
-                directorTv = findViewById(R.id.director_data);
-                synopsisTv = findViewById(R.id.synopsis_data);
-                castTv = findViewById(R.id.cast_data);
-
                 genreTv.setText(genresStr);
                 releaseTv.setText(obj.getString("release_date"));
                 castTv.setText(topSixCastStr);
