@@ -15,6 +15,7 @@ import java.util.List;
 public class WatchlistViewModel extends ViewModel {
     private WatchlistRepository repository;
     private MutableLiveData<List<WatchList>> allWatchlists;
+    private int movieCount;
 
     public WatchlistViewModel(){
         allWatchlists = new MutableLiveData<>();
@@ -29,8 +30,12 @@ public class WatchlistViewModel extends ViewModel {
         return repository.getAllWatchlists();
     }
 
-    public WatchList getWatchListById(int id){
-        return repository.getWatchListById(id);
+    public LiveData<WatchList> getWatchListById(int movieId){
+        return repository.getWatchListById(movieId);
+    }
+
+    public int getMovieCount(int movieId){
+        return repository.getMovieCount(movieId);
     }
 
     public void insert(WatchList watchList){

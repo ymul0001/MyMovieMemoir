@@ -4,10 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Time;
-import java.util.Date;
 
-@Entity(tableName = "watchlist")
+@Entity
 public class WatchList {
 
     @PrimaryKey

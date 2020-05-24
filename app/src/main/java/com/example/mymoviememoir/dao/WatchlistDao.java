@@ -17,7 +17,10 @@ public interface WatchlistDao {
     LiveData<List<WatchList>> getAll();
 
     @Query("SELECT * FROM watchlist WHERE movieId = :movieId LIMIT 1")
-    WatchList findByMovieId(int movieId);
+    LiveData<WatchList> findByMovieId(int movieId);
+
+    @Query("SELECT COUNT(*) FROM watchlist WHERE movieId = :movieId")
+    int findTotalMovieData(int movieId);
 
     @Insert
     void insert(WatchList watchList);

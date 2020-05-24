@@ -13,7 +13,8 @@ import java.util.List;
 public class WatchlistRepository {
     private WatchlistDao watchlistDao;
     private LiveData<List<WatchList>> allwatchLists;
-    private WatchList watchList;
+    private LiveData<WatchList> watchList;
+    private int movieCount;
 
     public WatchlistRepository(Application application){
         //instantiate database
@@ -36,7 +37,7 @@ public class WatchlistRepository {
         WatchlistDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                watchlistDao.insert(watchList);
+                watchlistDao.delete(watchList);
             }
         });
     }
@@ -47,14 +48,30 @@ public class WatchlistRepository {
         return allwatchLists;
     }
 
-    public WatchList getWatchListById(final int id){
+    public int getMovieCount(final int movieId){
+        WatchlistDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                movieCount = watchlistDao.findTotalMovieData(movieId);
+            }
+        });
+        return movieCount;
+    }
+
+    public LiveData<WatchList> getWatchListById(final int movieId){
         //get watchlist data from the room database with dao by id
         WatchlistDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                watchList = watchlistDao.findByMovieId(id);
+                LiveData<WatchList> runWatchlist = watchlistDao.findByMovieId(movieId);
+                setWatchList(runWatchlist);
             }
         });
         return watchList;
     }
+
+    public void setWatchList(LiveData<WatchList> watchList){
+        this.watchList=watchList;
+    }
+
 }

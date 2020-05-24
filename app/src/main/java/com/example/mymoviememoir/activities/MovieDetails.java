@@ -1,8 +1,10 @@
 package com.example.mymoviememoir.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
@@ -26,7 +27,6 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class MovieDetails extends AppCompatActivity {
     private ImageView movieIv;
@@ -58,43 +58,50 @@ public class MovieDetails extends AppCompatActivity {
         castTv = findViewById(R.id.cast_data);
         networkConnection = new NetworkConnection();
 
-        //get movie ids for getting movie details
-        Intent fromSearchFragment = getIntent();
-        Bundle bundle = fromSearchFragment.getExtras();
-        movieId = bundle.getInt("movieId");
-
         //initialize the ViewModel
         watchlistViewModel = new ViewModelProvider(this).get(WatchlistViewModel.class);
         watchlistViewModel.initializeVars(getApplication());
 
-
-
+        //get movie ids for getting movie details
+        Intent fromSearchFragment = getIntent();
+        Bundle bundle = fromSearchFragment.getExtras();
+        movieId = bundle.getInt("movieId");
+        SharedPreferences sf = getSharedPreferences("shared_prefss", MODE_PRIVATE);
+        sf.getInt("movieId", 0);
+        if (movieId == sf.getInt("movieId", 0)) {
+            watchListButton.setEnabled(false);
+            watchListButton.setAlpha(.5f);
+        }
         //get movie details
         GetMovieDetailsTask getMovieDetailsTask = new GetMovieDetailsTask();
         getMovieDetailsTask.execute();
 
 
+
+
         watchListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int id = movieId;
+                final String title = titleTv.getText().toString();
+                final String releaseDate = releaseTv.getText().toString();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
                 Date date = new Date();
-                String addedDate = dateFormat.format(date);
-                String addedTime = timeFormat.format(date);
+                final String addedDate = dateFormat.format(date);
+                final String addedTime = timeFormat.format(date);
                 if (watchlistViewModel.getWatchListById(movieId) != null)
                 {
-                    Toast.makeText(getApplicationContext(), "It is already in the watchlist!",
+                    Toast.makeText(getApplicationContext(), "Duplicated movies!",
                             Toast.LENGTH_LONG).show();
                 }
                 else{
-                    WatchList newWatchList = new WatchList(movieId, titleTv.getText().toString(), releaseTv.getText().toString(), addedDate, addedTime);
+                    WatchList newWatchList = new WatchList(id, title, releaseDate, addedDate, addedTime);
                     watchlistViewModel.insert(newWatchList);
                     Toast.makeText(getApplicationContext(), "Successfully added the movie to watchlist!",
                             Toast.LENGTH_LONG).show();
-
+                    saveData();
                 }
-
             }
         });
     }
@@ -150,7 +157,13 @@ public class MovieDetails extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
+    }
+
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_prefss", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("movieId", movieId);
+        editor.apply();
     }
 }

@@ -12,7 +12,7 @@ import com.example.mymoviememoir.entities.WatchList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = WatchList.class, version = 1)
+@Database(entities = WatchList.class, version = 2, exportSchema = false)
 public abstract class WatchlistDatabase extends RoomDatabase {
 
     //make the database singleton, so everywhere in the app will only use one type of WatchlistDatabase
@@ -27,9 +27,9 @@ public abstract class WatchlistDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     //make the database, synchronized so that multi threads do not accidentally create more instances
-    public static synchronized WatchlistDatabase getInstance(Context context){
+    public static synchronized WatchlistDatabase getInstance(final Context context){
         if (instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(), WatchlistDatabase.class, "watchlist_database")
+            instance = Room.databaseBuilder(context.getApplicationContext(), WatchlistDatabase.class, "WatchlistDatabase")
             .fallbackToDestructiveMigration() //code to prevent failure in versioning instances
                     .build();
         }
