@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ import com.example.mymoviememoir.viewmodel.WatchlistViewModel;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class WatchListFragment extends Fragment {
     private WatchlistViewModel watchlistViewModel;
     private TextView watchlistTitleTv;
@@ -37,6 +40,7 @@ public class WatchListFragment extends Fragment {
     private WatchlistAdapter adapter;
     private RecyclerView.Adapter itemsAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SharedPreferences sf;
     public WatchListFragment(){
 
     }
@@ -48,6 +52,7 @@ public class WatchListFragment extends Fragment {
         watchlistViewModel = new ViewModelProvider(this).get(WatchlistViewModel.class);
         watchlistViewModel.initializeVars(getActivity().getApplication());
         watchlistRv = view.findViewById(R.id.watchlist_rv);
+        sf = getActivity().getSharedPreferences("shared_prefss", MODE_PRIVATE);
         watchlistViewModel.getAllWatchLists().observe(this, new Observer<List<WatchList>>() {
             @Override
             public void onChanged(List<WatchList> watchLists) {
@@ -90,6 +95,7 @@ public class WatchListFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // Continue with delete operation
                         watchlistViewModel.delete(watchlistItems.get(position));
+                        sf.edit().remove("movieId").commit();
                     }
                 })
 
