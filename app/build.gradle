@@ -24,6 +24,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.1.0'
 
+    //add dependencies for the facebook
+    implementation 'com.facebook.android:facebook-android-sdk:4.33.0'
+
     //add dependencies for ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
     implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"

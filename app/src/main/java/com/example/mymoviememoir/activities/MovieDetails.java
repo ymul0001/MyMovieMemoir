@@ -1,7 +1,9 @@
 package com.example.mymoviememoir.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +22,12 @@ import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.entities.WatchList;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 import com.example.mymoviememoir.viewmodel.WatchlistViewModel;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -42,7 +51,8 @@ public class MovieDetails extends AppCompatActivity {
     private WatchlistViewModel watchlistViewModel;
     private int movieId;
     private NetworkConnection networkConnection;
-    /*private List<WatchList> watchLists;*/
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +67,8 @@ public class MovieDetails extends AppCompatActivity {
         memoirButton = findViewById(R.id.memoir_button);
         castTv = findViewById(R.id.cast_data);
         networkConnection = new NetworkConnection();
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
 
         //initialize the ViewModel
         watchlistViewModel = new ViewModelProvider(this).get(WatchlistViewModel.class);
@@ -96,6 +108,44 @@ public class MovieDetails extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else{
+                    new AlertDialog.Builder(MovieDetails.this)
+                            .setTitle("Post to Facebook")
+                            .setMessage("Do you also want to notify your friends on facebook?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                            .setQuote("I found a good movie called " + title + ". You can find it easily at:")
+                                            .setContentUrl(Uri.parse("https://www.netflix.com/id-en/"))
+                                            .build();
+                                    if (shareDialog.canShow(ShareLinkContent.class))
+                                    {
+                                        shareDialog.show(linkContent);
+                                    }
+                                    shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                                        @Override
+                                        public void onSuccess(Sharer.Result result) {
+                                            Toast.makeText(getApplicationContext(), "Successfully post a message!",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                        @Override
+                                        public void onCancel() {
+                                            Toast.makeText(getApplicationContext(), "Cancelling the message posting...",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                        @Override
+                                        public void onError(FacebookException error) {
+                                            Toast.makeText(getApplicationContext(), "There is something wrong with the system, try again later...",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            })
+                            // dismissing the dialog by specifying null for the listener argument
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                     WatchList newWatchList = new WatchList(id, title, releaseDate, addedDate, addedTime);
                     watchlistViewModel.insert(newWatchList);
                     Toast.makeText(getApplicationContext(), "Successfully added the movie to watchlist!",

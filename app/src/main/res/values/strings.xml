@@ -52,7 +52,8 @@
     <string name="watchlist_title">Your Watchlist</string>
     <string name="view_button">view</string>
     <string name="delete_button">delete</string>
-
+    <string name="app_id">248504802877666</string>
+    <string name="facebook_login_protocol_schema">fb248504802877666</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
