@@ -15,8 +15,8 @@
     <string name="signup_button">SIGN UP!</string>
     <string name="watchdate_ph">watch date</string>
     <string name="watchtime_ph">watch time</string>
-    <string name="cinemaname_ph">cinema name</string>
-    <string name="cinemapostcode_ph">cinema postcode</string>
+    <string name="cinemaname_ph">Cinema name</string>
+    <string name="cinemapostcode_ph">Cinema postcode</string>
     <string-array name="states">
         <item>Sydney</item>
         <item>Melbourne</item>
@@ -40,7 +40,7 @@
     <string name="comment_ph">add your comments</string>
     <string name="comment_legend">comments</string>
     <string name="rating_legend">ratings</string>
-    <string name="cinemaform_title">Add your cinema</string>
+    <string name="cinemaform_title">Add Cinema</string>
     <string name="cinemaaddress_ph">e.g. 12 Swanston St, VIC</string>
     <string name="cinemaaddress_legend">Cinema address</string>
     <string-array name="chart_year">

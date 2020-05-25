@@ -3,6 +3,7 @@ package com.example.mymoviememoir.networkconnection;
 import android.util.Log;
 
 
+import com.example.mymoviememoir.entities.Cinema;
 import com.example.mymoviememoir.entities.Credential;
 import com.example.mymoviememoir.entities.Person;
 import com.google.gson.Gson;
@@ -163,6 +164,27 @@ public class NetworkConnection {
             e.printStackTrace();
         }
         Log.i("json " , credentialJson);
+        return results;
+    }
+
+    public String addCinema(String[] cinemaData){
+        Cinema cinema = null;
+        cinema = new Cinema(Integer.parseInt(cinemaData[0]), cinemaData[1], cinemaData[2], cinemaData[3]);
+        Gson gson = new Gson();
+        String cinemaJson = gson.toJson(cinema);
+        final String methodPath = "moviememoir.cinema";
+        RequestBody body = RequestBody.create(cinemaJson, JSON);
+        Request request = new Request.Builder()
+                .url(BASE_URL + methodPath)
+                .post(body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.i("json " , cinemaJson);
         return results;
     }
 }

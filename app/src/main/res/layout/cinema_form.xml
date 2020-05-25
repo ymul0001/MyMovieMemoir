@@ -7,7 +7,7 @@
     android:background="@color/primaryBlack">
 
     <Button
-        android:id="@+id/next_button6"
+        android:id="@+id/addcinema_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cinemaaddress_form" />
 
     <TextView
-        android:id="@+id/cinemaname_legend4"
+        android:id="@+id/cinemaaddress_legend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -86,7 +86,7 @@
         android:background="@drawable/form_fill_shape"
         android:ems="10"
         android:hint="@string/cinemapostcode_ph"
-        android:inputType="date"
+        android:inputType="number"
         android:paddingBottom="8dp"
         android:textColor="@color/primaryWhite"
         android:textColorHint="@color/primaryWhite"
@@ -109,7 +109,7 @@
         android:background="@drawable/form_fill_shape"
         android:ems="10"
         android:hint="@string/cinemaaddress_ph"
-        android:inputType="date"
+        android:inputType="textPostalAddress"
         android:paddingBottom="8dp"
         android:textColor="@color/primaryWhite"
         android:textColorHint="@color/primaryWhite"
@@ -117,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cinemaname_legend4" />
+        app:layout_constraintTop_toBottomOf="@+id/cinemaaddress_legend" />
 
     <EditText
         android:id="@+id/cinemaname_form"
@@ -132,7 +132,7 @@
         android:background="@drawable/form_fill_shape"
         android:ems="10"
         android:hint="@string/cinemaname_ph"
-        android:inputType="date"
+        android:inputType="textShortMessage"
         android:paddingBottom="8dp"
         android:textColor="@color/primaryWhite"
         android:textColorHint="@color/primaryWhite"

@@ -156,8 +156,25 @@ public class MovieDetails extends AppCompatActivity {
         memoirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toMemoirForm = new Intent(MovieDetails.this, MemoirForm.class);
-                startActivity(toMemoirForm);
+                new AlertDialog.Builder(MovieDetails.this)
+                        .setTitle("Add a cinema")
+                        .setMessage("Do you want to add cinema first?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent toCinemaForm = new Intent(MovieDetails.this, CinemaForm.class);
+                                startActivity(toCinemaForm);
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent toMemoirForm = new Intent();
+                                startActivity(toMemoirForm);
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
     }
@@ -221,5 +238,17 @@ public class MovieDetails extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("movieId", movieId);
         editor.apply();
+    }
+
+    private class GetAllCinemaTask extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... params) {
+            return "Hello World";
+        }
+
+        @Override
+        protected void onPostExecute(String jsonResult) {
+
+        }
     }
 }
