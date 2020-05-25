@@ -13,6 +13,10 @@
     <string name="signup_state_ph">state</string>
     <string name="signup_confirm_password_ph">confirm password</string>
     <string name="signup_button">SIGN UP!</string>
+    <string name="watchdate_ph">watch date</string>
+    <string name="watchtime_ph">watch time</string>
+    <string name="cinemaname_ph">cinema name</string>
+    <string name="cinemapostcode_ph">cinema postcode</string>
     <string-array name="states">
         <item>Sydney</item>
         <item>Melbourne</item>
@@ -33,6 +37,12 @@
     <string name="pie_enddate">enter end date</string>
     <string name="pie_button">generate chart!</string>
     <string name="report_title_bar">Total movies per month</string>
+    <string name="comment_ph">add your comments</string>
+    <string name="comment_legend">comments</string>
+    <string name="rating_legend">ratings</string>
+    <string name="cinemaform_title">Add your cinema</string>
+    <string name="cinemaaddress_ph">e.g. 12 Swanston St, VIC</string>
+    <string name="cinemaaddress_legend">Cinema address</string>
     <string-array name="chart_year">
         <item>2015</item>
         <item>2016</item>
@@ -54,6 +64,7 @@
     <string name="delete_button">delete</string>
     <string name="app_id">248504802877666</string>
     <string name="facebook_login_protocol_schema">fb248504802877666</string>
+    <string name="cinemaform_button">Add cinema!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -89,8 +89,6 @@ public class MovieDetails extends AppCompatActivity {
         getMovieDetailsTask.execute();
 
 
-
-
         watchListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +150,14 @@ public class MovieDetails extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                     saveData();
                 }
+            }
+        });
+
+        memoirButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toMemoirForm = new Intent(MovieDetails.this, MemoirForm.class);
+                startActivity(toMemoirForm);
             }
         });
     }

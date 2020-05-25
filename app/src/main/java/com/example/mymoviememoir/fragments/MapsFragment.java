@@ -102,6 +102,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             JSONObject personObj = null;
             String address = "";
             String state = "";
+            int postcode = 0;
             SharedPreferences sf = getContext().getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
             int personId = sf.getInt("personId", 0);
             String personResult = networkConnection.getPersonById(personId);
@@ -109,10 +110,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 personObj = new JSONObject(personResult);
                 address = personObj.getString("personAddress");
                 state = personObj.getString("personState");
+                postcode = personObj.getInt("personPostcode");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            LatLng coordinates = getLocationFromAddress(address + state);
+            LatLng coordinates = getLocationFromAddress(address + state + postcode);
 
             userLatitude = coordinates.latitude;
             userLongitude = coordinates.longitude;
