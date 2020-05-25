@@ -50,6 +50,7 @@ public class MovieDetails extends AppCompatActivity {
     private Button memoirButton;
     private WatchlistViewModel watchlistViewModel;
     private int movieId;
+    private String backdropPath;
     private NetworkConnection networkConnection;
     CallbackManager callbackManager;
     ShareDialog shareDialog;
@@ -156,25 +157,13 @@ public class MovieDetails extends AppCompatActivity {
         memoirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(MovieDetails.this)
-                        .setTitle("Add a cinema")
-                        .setMessage("Do you want to add cinema first?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent toCinemaForm = new Intent(MovieDetails.this, CinemaForm.class);
-                                startActivity(toCinemaForm);
-
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent toMemoirForm = new Intent();
-                                startActivity(toMemoirForm);
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                Intent intent = new Intent(MovieDetails.this, MemoirForm.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("movieTitle", titleTv.getText().toString());
+                bundle.putString("releaseDate", releaseTv.getText().toString());
+                bundle.putString("backdropPath", backdropPath);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
@@ -220,11 +209,12 @@ public class MovieDetails extends AppCompatActivity {
                         directorsStr = directorsStr + crew.getString("name") + "; ";
                     }
                 }
+                backdropPath = obj.getString("backdrop_path");
                 genreTv.setText(genresStr);
                 releaseTv.setText(obj.getString("release_date"));
                 castTv.setText(topSixCastStr);
                 countryTv.setText(production_countries.getJSONObject(0).getString("name"));
-                Picasso.get().load("https://image.tmdb.org/t/p/original" + obj.getString("backdrop_path")).into(movieIv);
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + backdropPath).into(movieIv);
                 directorTv.setText(directorsStr);
                 synopsisTv.setText(obj.getString("overview"));
             } catch (JSONException e) {
@@ -232,7 +222,6 @@ public class MovieDetails extends AppCompatActivity {
             }
         }
     }
-
     public void saveData(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared_prefss", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -240,15 +229,4 @@ public class MovieDetails extends AppCompatActivity {
         editor.apply();
     }
 
-    private class GetAllCinemaTask extends AsyncTask<Void, Void, String> {
-        @Override
-        protected String doInBackground(Void... params) {
-            return "Hello World";
-        }
-
-        @Override
-        protected void onPostExecute(String jsonResult) {
-
-        }
-    }
 }

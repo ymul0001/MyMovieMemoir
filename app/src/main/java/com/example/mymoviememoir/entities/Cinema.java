@@ -4,9 +4,9 @@ public class Cinema {
     private int cinemaId;
     private String cinemaName;
     private String cinemaAddress;
-    private String cinemaPostcode;
+    private int cinemaPostcode;
 
-    public Cinema(int cinemaId, String cinemaName, String cinemaAddress, String cinemaPostcode) {
+    public Cinema(int cinemaId, String cinemaName, String cinemaAddress, int cinemaPostcode) {
         this.cinemaId = cinemaId;
         this.cinemaName = cinemaName;
         this.cinemaAddress = cinemaAddress;
@@ -37,11 +37,11 @@ public class Cinema {
         this.cinemaAddress = cinemaAddress;
     }
 
-    public String getCinemaPostcode() {
+    public int getCinemaPostcode() {
         return cinemaPostcode;
     }
 
-    public void setCinemaPostcode(String cinemaPostcode) {
+    public void setCinemaPostcode(int cinemaPostcode) {
         this.cinemaPostcode = cinemaPostcode;
     }
 }

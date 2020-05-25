@@ -28,6 +28,7 @@
         <activity android:name=".activities.SignUpSecondPage"></activity>
         <activity android:name=".activities.SignUpFirstPage"></activity>
         <activity android:name=".activities.CinemaForm"></activity>
+        <activity android:name=".activities.MemoirForm"></activity>
         <activity android:name=".activities.LoginForm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

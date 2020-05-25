@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.mymoviememoir.entities.Cinema;
 import com.example.mymoviememoir.entities.Credential;
+import com.example.mymoviememoir.entities.Memoir;
 import com.example.mymoviememoir.entities.Person;
 import com.google.gson.Gson;
 
@@ -20,6 +21,7 @@ public class NetworkConnection {
     private OkHttpClient client = null;
     private String results;
     private Person person = null;
+    private Cinema cinema = null;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public NetworkConnection(){
         client= new OkHttpClient();
@@ -101,6 +103,20 @@ public class NetworkConnection {
         return results;
     }
 
+    public String getAllMemoirs(){
+        final String methodPath = "moviememoir.memoir";
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
     public String getMoviesByPostcode(int personId, String startDate, String endDate){
         final String methodPath = "moviememoir.memoir/findTotalNumberOfMoviesPerPostcode/" + personId + "/" + startDate + "/" + endDate;
         Request.Builder builder = new Request.Builder();
@@ -141,10 +157,14 @@ public class NetworkConnection {
         return results;
     }
 
+
+
     public Person addPerson(String[] personData){
         person = new Person(Integer.parseInt(personData[0]), personData[1], personData[2], personData[3], personData[4], personData[5], personData[6], Integer.parseInt(personData[7]));
         return person;
     }
+
+
 
     public String addCredential(String[] credentialData){
         Credential credential = null;
@@ -167,9 +187,30 @@ public class NetworkConnection {
         return results;
     }
 
+    public String addMemoir(String[] memoirData){
+        Memoir memoir = null;
+        memoir  = new Memoir(Integer.parseInt(memoirData[0]), memoirData[1], memoirData[2], memoirData[3], memoirData[4], memoirData[5], Float.parseFloat(memoirData[6]), person, cinema);
+        Gson gson = new Gson();
+        String memoirJson= gson.toJson(memoir);
+        final String methodPath = "moviememoir.memoir";
+        RequestBody body = RequestBody.create(memoirJson, JSON);
+        Request request = new Request.Builder()
+                .url(BASE_URL + methodPath)
+                .post(body)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.i("json " , memoirJson);
+        return results;
+    }
+
     public String addCinema(String[] cinemaData){
         Cinema cinema = null;
-        cinema = new Cinema(Integer.parseInt(cinemaData[0]), cinemaData[1], cinemaData[2], cinemaData[3]);
+        cinema = new Cinema(Integer.parseInt(cinemaData[0]), cinemaData[1], cinemaData[2], Integer.parseInt(cinemaData[3]));
         Gson gson = new Gson();
         String cinemaJson = gson.toJson(cinema);
         final String methodPath = "moviememoir.cinema";
