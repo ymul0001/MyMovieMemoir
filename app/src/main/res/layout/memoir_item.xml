@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/topfive_items_shape">
+
+    <Button
+        android:id="@+id/memoir_view_button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/app_button"
+        android:text="@string/view_button"
+        android:textColor="@color/primaryWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/memoir_rating"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_suburb_legend"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/memoir_comments_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/memoir_comment"
+        android:textColor="@color/primaryWhite"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_rating" />
+
+    <TextView
+        android:id="@+id/memoir_rating_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="309dp"
+        android:layout_marginRight="309dp"
+        android:text="@string/user_rating"
+        android:textColor="@color/primaryWhite"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_suburb_legend" />
+
+    <RatingBar
+        android:id="@+id/memoir_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
+        android:background="@color/primaryWhite"
+        android:max="5"
+        android:numStars="5"
+        android:progressTint="@color/secondaryRed"
+        android:rating="3.5"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:stepSize="0.5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_rating_legend" />
+
+    <TextView
+        android:id="@+id/memoir_suburb_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/cinemapostcode_ph"
+        android:textColor="@color/primaryWhite"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/memoir_image"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_watch_legend" />
+
+    <TextView
+        android:id="@+id/memoir_watch_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:text="none"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memoir_watch_legend"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_release_date" />
+
+    <TextView
+        android:id="@+id/memoir_watch_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/watchdate_ph"
+        android:textColor="@color/primaryWhite"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/memoir_image"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_release_legend" />
+
+    <ImageView
+        android:id="@+id/memoir_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        app:layout_constraintEnd_toStartOf="@+id/memoir_suburb_legend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/memoir_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:text="fetching the data..."
+        android:textColor="@color/primaryWhite"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/memoir_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/memoir_release_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="22dp"
+        android:text="@string/release_ph"
+        android:textColor="@color/primaryWhite"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/memoir_image"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_title" />
+
+    <TextView
+        android:id="@+id/memoir_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:text="none"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memoir_release_legend"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_title" />
+
+    <TextView
+        android:id="@+id/memoir_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="none"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_comments_legend" />
+
+    <TextView
+        android:id="@+id/memoir_post_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="17dp"
+        android:textColor="@color/primaryWhite"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/memoir_suburb_legend"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_watch_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

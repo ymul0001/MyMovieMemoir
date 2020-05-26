@@ -53,6 +53,7 @@ public class NetworkConnection {
         try {
             Response response = client.newCall(request).execute();
             results = response.body().string();
+            Log.d("string", results);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -113,6 +114,7 @@ public class NetworkConnection {
         }catch (Exception e){
             e.printStackTrace();
         }
+        Log.d("string", results);
         return results;
     }
 
@@ -160,6 +162,19 @@ public class NetworkConnection {
         final String methodPath = "moviememoir.cinema/findByCinemaNameANDCinemaPostcode/" + cinemaName + "/" + postCode;
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getMovieDetailsByNameAndReleaseYear(String movieName, int releaseYear){
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_MOVIEAPI_URL + "api_key=" + MOVIE_API_KEY + "&query=" + movieName + "&primary_release_year=" + releaseYear);
         Request request = builder.build();
         try {
             Response response = client.newCall(request).execute();
