@@ -8,10 +8,10 @@ public class Memoir {
     private String movieWatchtime;
     private String movieComment;
     private float movieRating;
-    private Person personId;
-    private Cinema cinemaId;
+    private PersonId personId;
+    private CinemaId cinemaId;
 
-    public Memoir(int memoirId, String movieName, String movieReleasedate, String movieWatchdate, String movieWatchtime, String movieComment, float movieRating, Person personId, Cinema cinemaId) {
+    public Memoir(int memoirId, String movieName, String movieReleasedate, String movieWatchdate, String movieWatchtime, String movieComment, float movieRating, PersonId personId, CinemaId cinemaId) {
         this.memoirId = memoirId;
         this.movieName = movieName;
         this.movieReleasedate = movieReleasedate;
@@ -79,19 +79,19 @@ public class Memoir {
         this.movieRating = movieRating;
     }
 
-    public Person getPersonId() {
+    public PersonId getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Person personId) {
+    public void setPersonId(PersonId personId) {
         this.personId = personId;
     }
 
-    public Cinema getCinemaId() {
+    public CinemaId getCinemaId() {
         return cinemaId;
     }
 
-    public void setCinemaId(Cinema cinemaId) {
+    public void setCinemaId(CinemaId cinemaId) {
         this.cinemaId = cinemaId;
     }
 }

@@ -21,7 +21,6 @@ public class NetworkConnection {
     private OkHttpClient client = null;
     private String results;
     private Person person = null;
-    private Cinema cinema = null;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public NetworkConnection(){
         client= new OkHttpClient();
@@ -157,6 +156,20 @@ public class NetworkConnection {
         return results;
     }
 
+    public String getCinemaByNameandPostcode(String cinemaName, int postCode){
+        final String methodPath = "moviememoir.cinema/findByCinemaNameANDCinemaPostcode/" + cinemaName + "/" + postCode;
+        Request.Builder builder = new Request.Builder();
+        builder.url(BASE_URL + methodPath);
+        Request request = builder.build();
+        try {
+            Response response = client.newCall(request).execute();
+            results = response.body().string();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return results;
+    }
+
 
 
     public Person addPerson(String[] personData){
@@ -187,9 +200,9 @@ public class NetworkConnection {
         return results;
     }
 
-    public String addMemoir(String[] memoirData){
+    public String addMemoir(Memoir memoirData){
         Memoir memoir = null;
-        memoir  = new Memoir(Integer.parseInt(memoirData[0]), memoirData[1], memoirData[2], memoirData[3], memoirData[4], memoirData[5], Float.parseFloat(memoirData[6]), person, cinema);
+        memoir  = memoirData;
         Gson gson = new Gson();
         String memoirJson= gson.toJson(memoir);
         final String methodPath = "moviememoir.memoir";
