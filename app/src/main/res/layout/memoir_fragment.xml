@@ -8,6 +8,34 @@
     android:background="@color/primaryBlack">
 
     <TextView
+        android:id="@+id/filter_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/filter_spinner"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintBottom_toTopOf="@+id/sort_spinner"
+        app:layout_constraintStart_toEndOf="@+id/sort_legend"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/filter_spinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:entries="@array/filtered"
+        android:background="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memoir_title"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_title" />
+
+    <TextView
         android:id="@+id/memoir_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,11 +55,40 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sort_spinner" />
+
+    <Spinner
+        android:id="@+id/sort_spinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:entries="@array/sorted"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:background="@color/primaryWhite"
+        app:layout_constraintEnd_toStartOf="@+id/filter_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_title" />
+
+    <TextView
+        android:id="@+id/sort_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/sort_spinner"
+        android:textColor="@color/primaryWhite"
+        app:layout_constraintBottom_toTopOf="@+id/sort_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/memoir_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -169,7 +169,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/watchdate_form"
-            app:layout_constraintTop_toBottomOf="@+id/movie_poster"
+            app:layout_constraintTop_toBottomOf="@+id/memoir_detail_poster"
             app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
         <EditText
@@ -231,7 +231,7 @@
             app:layout_constraintTop_toBottomOf="@+id/movie_title" />
 
         <ImageView
-            android:id="@+id/movie_poster"
+            android:id="@+id/memoir_detail_poster"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="49dp"
@@ -251,7 +251,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_poster" />
+            app:layout_constraintTop_toBottomOf="@+id/memoir_detail_poster" />
 
         <Spinner
             android:id="@+id/cinemaname_spinner"

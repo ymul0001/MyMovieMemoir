@@ -24,19 +24,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mymoviememoir.R;
-import com.example.mymoviememoir.entities.Cinema;
 import com.example.mymoviememoir.entities.CinemaId;
 import com.example.mymoviememoir.entities.Memoir;
 import com.example.mymoviememoir.entities.PersonId;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -208,7 +205,7 @@ public class MemoirForm extends AppCompatActivity{
     private void initView(){
         movieTitleTv = findViewById(R.id.movie_title);
         movieReleaseTv = findViewById(R.id.release_date);
-        moviePosterIv = findViewById(R.id.movie_poster);
+        moviePosterIv = findViewById(R.id.memoir_detail_poster);
         movieWatchdateEt = findViewById(R.id.watchdate_form);
         movieWatchtimeEt = findViewById(R.id.watchtime_form);
         movieCommentEt = findViewById(R.id.cinemacomment_form);

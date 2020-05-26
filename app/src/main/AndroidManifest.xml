@@ -24,7 +24,7 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationName"
             android:value="@string/app_name" />
-
+        <activity android:name=".activities.MemoirDetails"></activity>
         <activity android:name=".activities.SignUpSecondPage"></activity>
         <activity android:name=".activities.SignUpFirstPage"></activity>
         <activity android:name=".activities.CinemaForm"></activity>

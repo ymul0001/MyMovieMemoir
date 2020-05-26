@@ -11,7 +11,7 @@
     android:background="@color/primaryBlack">
 
     <TextView
-        android:id="@+id/cast_title"
+        android:id="@+id/memoir_cast_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -21,10 +21,10 @@
         android:textColor="@color/primaryWhite"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/director_data" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_director_data" />
 
     <TextView
-        android:id="@+id/cast_data"
+        android:id="@+id/memoir_cast_data"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -33,7 +33,7 @@
         android:textColor="@color/primaryWhite"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_cast_title" />
 
     <Button
         android:id="@+id/memoir_button"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/watchlist_button"
-        app:layout_constraintTop_toBottomOf="@+id/synopsis_data" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_synopsis_data" />
 
     <Button
         android:id="@+id/watchlist_button"
@@ -75,10 +75,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/synopsis_data" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_synopsis_data" />
 
     <TextView
-        android:id="@+id/synopsis_data"
+        android:id="@+id/memoir_synopsis_data"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -87,10 +87,10 @@
         android:textColor="@color/primaryWhite"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/synopsis_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_synopsis_title" />
 
     <TextView
-        android:id="@+id/director_data"
+        android:id="@+id/memoir_director_data"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
@@ -99,10 +99,10 @@
         android:textColor="@color/primaryWhite"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/director_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_director_title" />
 
     <TextView
-        android:id="@+id/country_data"
+        android:id="@+id/memoir_country_data"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
@@ -114,11 +114,11 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintStart_toEndOf="@+id/country_title"
-        app:layout_constraintTop_toBottomOf="@+id/genre_data" />
+        app:layout_constraintStart_toEndOf="@+id/memoir_country_title"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_genre_data" />
 
     <TextView
-        android:id="@+id/release_data"
+        android:id="@+id/memoir_release_data"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -129,11 +129,11 @@
         android:textColor="@color/primaryWhite"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/release_title"
-        app:layout_constraintTop_toBottomOf="@+id/country_data" />
+        app:layout_constraintStart_toEndOf="@+id/memoir_release_title"
+        app:layout_constraintTop_toBottomOf="@+id/memoir_country_data" />
 
     <TextView
-        android:id="@+id/genre_data"
+        android:id="@+id/memoir_genre_data"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -145,11 +145,11 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.177"
-        app:layout_constraintStart_toEndOf="@+id/genre_title"
+        app:layout_constraintStart_toEndOf="@+id/memoir_genre_title"
         app:layout_constraintTop_toBottomOf="@+id/movie_title" />
 
     <TextView
-        android:id="@+id/synopsis_title"
+        android:id="@+id/memoir_synopsis_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
@@ -159,10 +159,10 @@
         android:textColor="@color/primaryWhite"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cast_data" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_cast_data" />
 
     <TextView
-        android:id="@+id/director_title"
+        android:id="@+id/memoir_director_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -172,10 +172,10 @@
         android:textColor="@color/primaryWhite"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/release_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_release_title" />
 
     <TextView
-        android:id="@+id/country_title"
+        android:id="@+id/memoir_country_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
@@ -188,10 +188,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genre_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_genre_title" />
 
     <TextView
-        android:id="@+id/release_title"
+        android:id="@+id/memoir_release_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -201,10 +201,10 @@
         android:textColor="@color/primaryWhite"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_title" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_country_title" />
 
     <ImageView
-        android:id="@+id/movie_poster"
+        android:id="@+id/memoir_detail_poster"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -225,10 +225,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_poster" />
+        app:layout_constraintTop_toBottomOf="@+id/memoir_detail_poster" />
 
     <TextView
-        android:id="@+id/genre_title"
+        android:id="@+id/memoir_genre_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

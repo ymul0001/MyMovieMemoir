@@ -1,5 +1,7 @@
 package com.example.mymoviememoir.entities;
 
+import java.util.ArrayList;
+
 public class FullMemoir {
     private String memoirName;
     private String memoirImagePath;
@@ -9,8 +11,10 @@ public class FullMemoir {
     private float userRating;
     private float publicRating;
     private String comments;
+    private ArrayList<Integer> genreIds;
+    private int movieId;
 
-    public FullMemoir(String memoirName, String memoirImagePath, String releaseDate, String watchDate, int postCode, float userRating, float publicRating,String comments) {
+    public FullMemoir(String memoirName, String memoirImagePath, String releaseDate, String watchDate, int postCode, float userRating, float publicRating, String comments, ArrayList<Integer> genreIds, int movieId) {
         this.memoirName = memoirName;
         this.memoirImagePath = memoirImagePath;
         this.releaseDate = releaseDate;
@@ -19,6 +23,8 @@ public class FullMemoir {
         this.userRating = userRating;
         this.publicRating = publicRating;
         this.comments = comments;
+        this.genreIds = genreIds;
+        this.movieId = movieId;
     }
 
     public String getMemoirName() {
@@ -83,5 +89,21 @@ public class FullMemoir {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public ArrayList<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(ArrayList<Integer> genreIds) {
+        this.genreIds = genreIds;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }
