@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class MovieDetails extends AppCompatActivity {
     private TextView castTv;
     private Button watchListButton;
     private Button memoirButton;
+    private RatingBar ratingBar;
     private WatchlistViewModel watchlistViewModel;
     private int movieId;
     private String backdropPath;
@@ -57,6 +59,7 @@ public class MovieDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details);
+        ratingBar = findViewById(R.id.movie_rating);
         movieIv = findViewById(R.id.memoir_detail_poster);
         genreTv = findViewById(R.id.memoir_genre_data);
         releaseTv = findViewById(R.id.memoir_release_data);
@@ -184,6 +187,7 @@ public class MovieDetails extends AppCompatActivity {
             try {
                 obj = new JSONObject(jsonResult);
                 titleTv.setText(obj.getString("title"));
+                ratingBar.setRating(Math.round(Float.parseFloat(obj.get("vote_average").toString()))/2);
                 JSONArray genres = obj.getJSONArray("genres");
                 JSONArray production_countries = obj.getJSONArray("production_countries");
                 JSONObject credits = obj.getJSONObject("credits");
