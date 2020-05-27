@@ -171,21 +171,27 @@ public class MemoirFragment extends Fragment {
                         memoirItemsByGenre = null; break;
                     case "Action":
                         genreId = 28;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                     case "Comedy":
                         genreId = 35;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                     case "Fantasy":
                         genreId = 14;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                     case "Romance":
                         genreId = 10479;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                     case "Thriller":
                         genreId = 53;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                     default:
                         genreId = 0;
+                        setOnClickListener(memoirItemsByGenre);
                         adapter = new MemoirAdapter(memoirItemsByGenre, listener); break;
                 }
                 for(FullMemoir item: memoirItems){
@@ -194,7 +200,6 @@ public class MemoirFragment extends Fragment {
                         memoirItemsByGenre.add(item);
                     }
                 }
-                setOnClickListener(memoirItemsByGenre);
                 memoirRv.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }

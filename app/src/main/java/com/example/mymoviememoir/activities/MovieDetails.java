@@ -59,16 +59,7 @@ public class MovieDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_details);
-        ratingBar = findViewById(R.id.movie_rating);
-        movieIv = findViewById(R.id.memoir_detail_poster);
-        genreTv = findViewById(R.id.memoir_genre_data);
-        releaseTv = findViewById(R.id.memoir_release_data);
-        countryTv = findViewById(R.id.memoir_country_data);
-        directorTv = findViewById(R.id.memoir_director_data);
-        synopsisTv = findViewById(R.id.memoir_synopsis_data);
-        watchListButton = findViewById(R.id.watchlist_button);
-        memoirButton = findViewById(R.id.memoir_button);
-        castTv = findViewById(R.id.memoir_cast_data);
+        initView();
         networkConnection = new NetworkConnection();
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
@@ -168,6 +159,20 @@ public class MovieDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    public void initView(){
+        ratingBar = findViewById(R.id.movie_rating);
+        movieIv = findViewById(R.id.memoir_detail_poster);
+        genreTv = findViewById(R.id.memoir_genre_data);
+        releaseTv = findViewById(R.id.memoir_release_data);
+        countryTv = findViewById(R.id.memoir_country_data);
+        directorTv = findViewById(R.id.memoir_director_data);
+        synopsisTv = findViewById(R.id.memoir_synopsis_data);
+        watchListButton = findViewById(R.id.watchlist_button);
+        memoirButton = findViewById(R.id.memoir_button);
+        castTv = findViewById(R.id.memoir_cast_data);
     }
 
     private class GetMovieDetailsTask extends AsyncTask<Void, Void, String> {
