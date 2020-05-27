@@ -1,249 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBlack">
+
+
+    <TextView
+        android:id="@+id/signup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="Sign up"
+        android:textStyle="bold"
+        android:textColor="@color/secondaryRed"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="43.5dp"
+        android:tint="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+
+    <TextView
+        android:id="@+id/firstname_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="52dp"
+        android:text="First name"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_title" />
+
+
+    <TextView
+        android:id="@+id/page_legend"
+        android:layout_width="67dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="52dp"
+        android:text="page 1/2"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_title" />
+
+    <EditText
+        android:id="@+id/firstname_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/signup_firstname_ph"
+        android:textSize="16dp"
+        android:textColor="@color/primaryWhite"
+        android:inputType="textPersonName"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/primaryWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_legend" />
+
+    <TextView
+        android:id="@+id/lastname_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:text="Last name"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_form" />
+
+    <EditText
+        android:id="@+id/lastname_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/signup_lastname_ph"
+        android:inputType="textPersonName"
+        android:textColor="@color/primaryWhite"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/primaryWhite"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_legend" />
+
+    <EditText
+        android:id="@+id/dob_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:alpha="0.8"
+        android:background="@drawable/form_fill_shape"
+        android:ems="10"
+        android:hint="@string/signup_dob_ph"
+        android:inputType="date"
+        android:paddingBottom="8dp"
+        android:textColor="@color/primaryWhite"
+        android:textColorHint="@color/primaryWhite"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob_legend" />
+
+    <TextView
+        android:id="@+id/dob_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:text="Date of birth"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_form" />
+
+    <ImageView
+        android:id="@+id/dob_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/dob_form"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dob_form"
+        app:layout_constraintTop_toTopOf="@+id/dob_form"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <TextView
+        android:id="@+id/gender_legend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="28dp"
+        android:text="Gender"
+        android:textColor="@color/primaryWhite"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dob_form" />
+
+    <RadioGroup
+        android:id="@+id/gender_group"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primaryBlack">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_legend">
 
-
-        <TextView
-            android:id="@+id/signup_title"
+        <RadioButton
+            android:id="@+id/radio_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:text="Sign up"
-            android:textStyle="bold"
-            android:textColor="@color/secondaryRed"
-            android:textSize="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginRight="50dp"
+            android:buttonTint="@color/primaryWhite"
+            android:checked="true"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/signup_gender_male"
+            android:textColor="@color/primaryWhite" />
 
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="43.5dp"
-            android:tint="@color/primaryWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.091"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/homeAsUpIndicator" />
-
-
-        <TextView
-            android:id="@+id/firstname_legend"
+        <RadioButton
+            android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="52dp"
-            android:text="First name"
-            android:textColor="@color/primaryWhite"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_title" />
+            android:buttonTint="@color/primaryWhite"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/signup_gender_female"
+            android:textColor="@color/primaryWhite" />
+    </RadioGroup>
 
-
-        <TextView
-            android:id="@+id/page_legend"
-            android:layout_width="67dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="52dp"
-            android:text="page 1/2"
-            android:textColor="@color/primaryWhite"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.883"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_title" />
-
-        <EditText
-            android:id="@+id/firstname_form"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:alpha="0.8"
-            android:background="@drawable/form_fill_shape"
-            android:ems="10"
-            android:hint="@string/signup_firstname_ph"
-            android:textSize="16dp"
-            android:textColor="@color/primaryWhite"
-            android:inputType="textPersonName"
-            android:paddingBottom="8dp"
-            android:textColorHint="@color/primaryWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstname_legend" />
-
-        <TextView
-            android:id="@+id/lastname_legend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="32dp"
-            android:text="Last name"
-            android:textColor="@color/primaryWhite"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstname_form" />
-
-        <EditText
-            android:id="@+id/lastname_form"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:alpha="0.8"
-            android:background="@drawable/form_fill_shape"
-            android:ems="10"
-            android:hint="@string/signup_lastname_ph"
-            android:inputType="textPersonName"
-            android:textColor="@color/primaryWhite"
-            android:paddingBottom="8dp"
-            android:textColorHint="@color/primaryWhite"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastname_legend" />
-
-        <EditText
-            android:id="@+id/dob_form"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:alpha="0.8"
-            android:background="@drawable/form_fill_shape"
-            android:ems="10"
-            android:hint="@string/signup_dob_ph"
-            android:inputType="date"
-            android:paddingBottom="8dp"
-            android:textColor="@color/primaryWhite"
-            android:textColorHint="@color/primaryWhite"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dob_legend" />
-
-        <TextView
-            android:id="@+id/dob_legend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="32dp"
-            android:text="Date of birth"
-            android:textColor="@color/primaryWhite"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastname_form" />
-
-        <ImageView
-            android:id="@+id/dob_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/dob_form"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/dob_form"
-            app:layout_constraintTop_toTopOf="@+id/dob_form"
-            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
-
-        <TextView
-            android:id="@+id/gender_legend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="28dp"
-            android:text="Gender"
-            android:textColor="@color/primaryWhite"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dob_form" />
-
-        <RadioGroup
-            android:id="@+id/gender_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gender_legend">
-
-            <RadioButton
-                android:id="@+id/radio_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:buttonTint="@color/primaryWhite"
-                android:checked="true"
-                android:scaleX="0.9"
-                android:scaleY="0.9"
-                android:text="@string/signup_gender_male"
-                android:textColor="@color/primaryWhite" />
-
-            <RadioButton
-                android:id="@+id/radio_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/primaryWhite"
-                android:scaleX="0.9"
-                android:scaleY="0.9"
-                android:text="@string/signup_gender_female"
-                android:textColor="@color/primaryWhite" />
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginRight="80dp"
-            android:background="@drawable/app_button"
-            android:text="NEXT"
-            android:textColor="@color/primaryWhite"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gender_group" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/app_button"
+        android:text="NEXT"
+        android:textColor="@color/primaryWhite"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_group" />
+</androidx.constraintlayout.widget.ConstraintLayout>
