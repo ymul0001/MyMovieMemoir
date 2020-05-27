@@ -18,8 +18,14 @@ import android.widget.Toast;
 import com.example.mymoviememoir.R;
 import com.example.mymoviememoir.networkconnection.NetworkConnection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -38,6 +44,7 @@ public class SignUpSecondPage extends AppCompatActivity {
     private Spinner stateSpinner;
     private int personCounter;
     private int credentialCounter;
+    private ArrayList<String> emails;
     private static final String SHARED_PREF = "sharedPrefs";
     private static final String PERSON_COUNTER = "personCounter";
     private static final String CREDENTIAL_COUNTER = "credentialCounter";
@@ -51,8 +58,11 @@ public class SignUpSecondPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_form_two);
+        emails = new ArrayList<>();
         loadData();
         initView();
+        GetCredentialTask getCredentialTask = new GetCredentialTask();
+        getCredentialTask.execute();
         //listeners start here
         showHidePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +107,39 @@ public class SignUpSecondPage extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] credentialData = createCredentialData();
-                AddCredentialTask addCredentialTask = new AddCredentialTask();
-                addCredentialTask.execute(credentialData);
+                //validation for the blank inputs
+                ArrayList<String> responses = new ArrayList<>(Arrays.asList(addressEt.getText().toString().trim(),stateSpinner.getSelectedItem().toString().trim(),postcodeEt.getText().toString().trim(), emailEt.getText().toString().trim(), passwordEt.getText().toString(), confirmEt.getText().toString()));
+                if(responses.indexOf("") != -1){
+                    Toast.makeText(getApplicationContext(), "Please fill all the forms first",
+                            Toast.LENGTH_LONG).show();
+                }
+                else{
+                    if (responses.get(2).length() != 4) {
+                        Toast.makeText(getApplicationContext(), "Postcode is inputted in a wrong format!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (!responses.get(3).contains("@")){
+                        Toast.makeText(getApplicationContext(), "Email is inputted in a wrong format!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (responses.get(4).length() < 8){
+                        Toast.makeText(getApplicationContext(), "Password is inputted in a wrong format!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (!responses.get(4).equals(responses.get(5))){
+                        Toast.makeText(getApplicationContext(), "Password does not match!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else if (emails.indexOf(emailEt.getText().toString().trim()) != -1){
+                        Toast.makeText(getApplicationContext(), "Email is already registered!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        String[] credentialData = createCredentialData();
+                        AddCredentialTask addCredentialTask = new AddCredentialTask();
+                        addCredentialTask.execute(credentialData);
+                    }
+                }
             }
         });
     }
@@ -202,14 +242,42 @@ public class SignUpSecondPage extends AppCompatActivity {
             saveData();
             String message = "Successfully signed up! please try to log in";
             return message;
-        };
+        }
         @Override
         protected void onPostExecute(String result) {
             Intent toMainPage = new Intent(SignUpSecondPage.this, LoginForm.class);
             startActivity(toMainPage);
             Toast.makeText(getApplicationContext(), result,
                     Toast.LENGTH_LONG).show();
-        };
+        }
+    }
+
+    private class GetCredentialTask extends AsyncTask<Void, Void, String>{
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String result = networkConnection.getAllCredentials();
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            for (int i = 0; i< jsonArray.length(); i++){
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    emails.add(jsonObject.getString("credUsername"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void  onPostExecute(String result) {
+
+        }
     }
 }
 

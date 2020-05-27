@@ -18,6 +18,8 @@ import com.example.mymoviememoir.fragments.SearchFragment;
 import com.example.mymoviememoir.model.MovieResult;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>  {
@@ -75,12 +77,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder viewHolder,
                                  int position) {
         final MovieResult item = movieItems.get(position);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        SimpleDateFormat inputDf = new SimpleDateFormat("yyyy-MM-dd");
         // viewholder binding with its data at the specified position
         ImageView ivMovie = viewHolder.movieIv;
         TextView tvMovieTitle = viewHolder.movieTitleTv;
         TextView tvMovieRelease = viewHolder.movieReleaseTv;
         Picasso.get().load(item.getMovieImagePath()).into(ivMovie);
         tvMovieTitle.setText(item.getMovieTitle());
-        tvMovieRelease.setText("Release date " + item.getMovieReleaseDate());
+        try {
+            tvMovieRelease.setText("Release year: " + sdf.format(inputDf.parse(item.getMovieReleaseDate())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

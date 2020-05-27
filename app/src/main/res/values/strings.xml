@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyMovieMemoir</string>
     <string name="app_title">My Movie Memoir</string>
-    <string name="login_username_ph">email</string>
+    <string name="login_username_ph">e.g. example@gmail.com</string>
     <string name="login_password_ph">password</string>
     <string name="login_forgot_password">Forgot password?</string>
     <string name="signup_firstname_ph">first name</string>

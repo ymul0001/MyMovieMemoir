@@ -114,6 +114,10 @@ public class SearchFragment extends Fragment {
             movieRv.setAdapter(adapter);
             movieRv.setLayoutManager(layoutManager);
         }
+
+        private void initView(){
+
+        }
 }
 
     private void setOnClickListener(final ArrayList<MovieResult> results) {
