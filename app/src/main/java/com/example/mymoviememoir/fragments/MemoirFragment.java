@@ -1,6 +1,7 @@
 package com.example.mymoviememoir.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,8 +36,9 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class MemoirFragment extends Fragment {
+import static android.content.Context.MODE_PRIVATE;
 
+public class MemoirFragment extends Fragment {
     private RecyclerView memoirRv;
     private MemoirAdapter.ClickListener listener;
     private List<FullMemoir> memoirItems;
@@ -60,10 +62,10 @@ public class MemoirFragment extends Fragment {
         //init views and all variables
         memoirItems = new ArrayList<>();
         initView(view);
-
+        SharedPreferences sf = getActivity().getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
         //execute the fetch data method
         GetAllMemoirTasks getAllMemoirTasks = new GetAllMemoirTasks();
-        getAllMemoirTasks.execute();
+        getAllMemoirTasks.execute(sf.getInt("personId", 0));
 
         //listeners start here
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -233,12 +235,12 @@ public class MemoirFragment extends Fragment {
         filterSpinner = view.findViewById(R.id.filter_spinner);
     }
 
-    private class GetAllMemoirTasks extends AsyncTask<Void, Void, String> {
+    private class GetAllMemoirTasks extends AsyncTask<Integer, Void, String> {
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(Integer... params) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-            String result = networkConnection.getAllMemoirs();
+            String result = networkConnection.getAllMemoirsByPersonId(params[0]);
             JSONArray array = null;
             try {
                 array = new JSONArray(result);

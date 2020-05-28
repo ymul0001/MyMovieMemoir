@@ -72,6 +72,7 @@
         android:background="@color/primaryWhite"
         android:max="5"
         android:numStars="5"
+        android:isIndicator="true"
         android:progressTint="@color/secondaryRed"
         android:rating="3.5"
         android:scaleX=".5"

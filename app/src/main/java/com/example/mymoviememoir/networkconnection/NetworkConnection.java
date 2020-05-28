@@ -103,8 +103,8 @@ public class NetworkConnection {
         return results;
     }
 
-    public String getAllMemoirs(){
-        final String methodPath = "moviememoir.memoir";
+    public String getAllMemoirsByPersonId(int id){
+        final String methodPath = "moviememoir.memoir/findByPersonId/" + id;
         Request.Builder builder = new Request.Builder();
         builder.url(BASE_URL + methodPath);
         Request request = builder.build();
