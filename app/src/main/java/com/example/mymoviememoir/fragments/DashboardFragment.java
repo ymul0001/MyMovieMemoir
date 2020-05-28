@@ -49,6 +49,8 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dashboard_fragment, container, false);
+
+        //views are initialised in here because those need view objects
         welcomeTv = view.findViewById(R.id.dashboard_welcome);
         dateTv = view.findViewById(R.id.dashboard_date);
         itemsRv = view.findViewById(R.id.watchlist_rv);
@@ -61,6 +63,7 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    //method for getting top five movies from the database
     private class GetTopFiveMoviesTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {

@@ -70,6 +70,8 @@ public class ReportsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.reports_fragment, container, false);
+
+        //views are initialised here because all of them need a view object
         networkConnection = new NetworkConnection();
         startdateEt = view.findViewById(R.id.startdate_form);
         enddateEt = view.findViewById(R.id.enddate_form);
@@ -82,6 +84,8 @@ public class ReportsFragment extends Fragment {
         endDateCalendar = Calendar.getInstance();
         pieChart = view.findViewById(R.id.pie_chart);
         barChart = view.findViewById(R.id.bar_chart);
+
+        //date picker dialog's separate methods start here
         final DatePickerDialog.OnDateSetListener startDate = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month,
@@ -108,6 +112,7 @@ public class ReportsFragment extends Fragment {
             }
         };
 
+        //listeners start here
         startDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +154,7 @@ public class ReportsFragment extends Fragment {
         return view;
     }
 
+    //method for getting movies by suburb(postcode to be exact) from the database
     private class GetMoviesBySuburbTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -203,6 +209,7 @@ public class ReportsFragment extends Fragment {
         }
     }
 
+    //method for getting movies watched by each month
     private class GetMoviesByMonthTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -279,6 +286,7 @@ public class ReportsFragment extends Fragment {
         pieChart.invalidate();
     }
 
+    //separate method for adding dataset to the bar chart
     private void addBarDataSet(){
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         for (int i = 0; i < months.size(); i++){

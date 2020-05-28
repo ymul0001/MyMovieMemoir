@@ -42,6 +42,7 @@ public class SignUpFirstPage extends AppCompatActivity {
         //init the variables for the view layout
         initView();
 
+        //method for triggering the datepicker
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month,
@@ -55,6 +56,7 @@ public class SignUpFirstPage extends AppCompatActivity {
             }
         };
 
+        //listeners start here
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +104,7 @@ public class SignUpFirstPage extends AppCompatActivity {
         });
     }
 
+    // method for init the view
     private void initView(){
         backButton = findViewById(R.id.back_button);
         dobButton = findViewById(R.id.dob_button);

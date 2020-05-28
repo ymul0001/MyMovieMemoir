@@ -50,6 +50,8 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search_fragment, container, false);
+
+        //views are iniialised here because it needs a view object
         searchEt = view.findViewById(R.id.search_bar);
         searchButton = view.findViewById(R.id.search_button);
         movieRv = view.findViewById(R.id.search_rv);
@@ -65,6 +67,7 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+    //method for GET movies list from the movie DB
     private class GetMoviesFromApiTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -119,7 +122,7 @@ public class SearchFragment extends Fragment {
 
         }
 }
-
+    //separate method for triggering click listener for the recycler view
     private void setOnClickListener(final ArrayList<MovieResult> results) {
         listener = new SearchAdapter.RecyclerViewClickListener() {
             @Override

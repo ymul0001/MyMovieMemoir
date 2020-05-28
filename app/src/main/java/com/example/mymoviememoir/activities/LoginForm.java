@@ -37,12 +37,12 @@ public class LoginForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_form);
-        submitButton = findViewById(R.id.submit_button);
-        showHideButton = findViewById(R.id.show_password);
-        usernameEt = findViewById(R.id.login_username);
-        passwordEt = findViewById(R.id.login_password);
-        signupButton = findViewById(R.id.signup_button);
+
+        //init views
+        initView();
         networkConnection = new NetworkConnection();
+
+        //click listeners start here
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +74,18 @@ public class LoginForm extends AppCompatActivity {
         });
     }
 
+    private void initView(){
+        submitButton = findViewById(R.id.submit_button);
+        showHideButton = findViewById(R.id.show_password);
+        usernameEt = findViewById(R.id.login_username);
+        passwordEt = findViewById(R.id.login_password);
+        signupButton = findViewById(R.id.signup_button);
+    }
+
+    //Async Task class for validating credentials
     private class GetAllCredentialsTask extends AsyncTask<Void, Void, String> {
 
+        //code for hashing password
         protected String getMd5Password(final String s) {
             final String MD5MODULE = "MD5";
             try {

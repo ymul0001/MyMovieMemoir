@@ -73,6 +73,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    //triggering all map views after map is ready
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMaps = googleMap;
@@ -95,7 +96,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         return p1;
     }
 
-
+    //method for getting person's location from the database as address, and will convert it to coordinates
     private class GetPersonLocationTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
@@ -138,6 +139,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    //method for getting cinema's location from the database as address, and will convert it to coordinates
     private class GetCinemaLocationTask extends AsyncTask<Void, Void, String>{
         @Override
         protected String doInBackground(Void...params){

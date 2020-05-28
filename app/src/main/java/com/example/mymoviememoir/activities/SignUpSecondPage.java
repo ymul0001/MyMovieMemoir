@@ -63,6 +63,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         initView();
         GetCredentialTask getCredentialTask = new GetCredentialTask();
         getCredentialTask.execute();
+
         //listeners start here
         showHidePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +145,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         });
     }
 
+    //methods for saving and loading shared preferences, to store the personId and credentialId counters for the database
     protected void saveData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -161,6 +163,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         credentialCounter = sharedPreferences.getInt(CREDENTIAL_COUNTER, 17);
     }
 
+    //method for creating a person object for POST method
     protected String[] createPersonData(){
         Intent fromPreviousPage = getIntent();
         Bundle data = fromPreviousPage.getExtras();
@@ -183,6 +186,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         return personData;
     }
 
+    //method for creating a credential object for POST method
     protected String[] createCredentialData(){
         String[] credentialData = new String[4];
         credentialData[0] = String.valueOf(credentialCounter);
@@ -195,6 +199,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         return credentialData;
     }
 
+    //method for md5 hashing password
     private String getMd5Password(final String s) {
         final String MD5MODULE = "MD5";
         try {
@@ -220,6 +225,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         return "";
     }
 
+    //method for initialising the view
     private void initView(){
         addressEt = findViewById(R.id.address_form);
         emailEt = findViewById(R.id.email_form);
@@ -234,6 +240,7 @@ public class SignUpSecondPage extends AppCompatActivity {
         networkConnection = new NetworkConnection();
     }
 
+    //method for credential's and PERSON's POST methods all at once
     private class AddCredentialTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params){
@@ -252,6 +259,8 @@ public class SignUpSecondPage extends AppCompatActivity {
         }
     }
 
+
+    //method for getting all credentials from database for the validation
     private class GetCredentialTask extends AsyncTask<Void, Void, String>{
 
         @Override

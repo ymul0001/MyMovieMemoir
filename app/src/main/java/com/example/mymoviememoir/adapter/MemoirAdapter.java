@@ -33,6 +33,7 @@ public class MemoirAdapter extends RecyclerView.Adapter<MemoirAdapter.ViewHolder
         public ImageView memoirImageIv;
         public Button viewButton;
 
+        //view holder's constructor for the memoir adapter
         public ViewHolder(View itemView, final ClickListener listener) {
             super(itemView);
             memoirTitleTv = itemView.findViewById(R.id.memoir_title);

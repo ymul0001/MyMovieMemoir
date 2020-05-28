@@ -20,6 +20,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         public TextView releaseDateTv;
         public TextView ratingTv;
 
+        //dashboard view holder constructors
         public ViewHolder(View itemView) {
             super(itemView);
             titleTv = itemView.findViewById(R.id.watch_title);
@@ -32,10 +33,12 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
     public DashboardAdapter(List<TopfiveResult> resultItems){
         this.resultItems = resultItems;
     }
+
     public void addUnits(List<TopfiveResult> resultItems) {
         this.resultItems = resultItems;
         notifyDataSetChanged();
     }
+
     public int getItemCount(){
         return resultItems.size();
     }

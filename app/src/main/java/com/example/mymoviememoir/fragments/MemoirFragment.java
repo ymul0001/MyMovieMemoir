@@ -68,6 +68,7 @@ public class MemoirFragment extends Fragment {
         getAllMemoirTasks.execute(sf.getInt("personId", 0));
 
         //listeners start here
+        //listeners for sorting options are here
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -161,6 +162,7 @@ public class MemoirFragment extends Fragment {
             }
         });
 
+        //listeners for the filtering options
         filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -214,6 +216,7 @@ public class MemoirFragment extends Fragment {
         return view;
     }
 
+    //separate method for initialising button listeners for recycler view
     private void setOnClickListener(final List<FullMemoir> memoirItems) {
         listener = new MemoirAdapter.ClickListener() {
             @Override
@@ -235,6 +238,7 @@ public class MemoirFragment extends Fragment {
         filterSpinner = view.findViewById(R.id.filter_spinner);
     }
 
+    //method for the GET all memoirs by each person Id
     private class GetAllMemoirTasks extends AsyncTask<Integer, Void, String> {
         @Override
         protected String doInBackground(Integer... params) {

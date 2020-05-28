@@ -27,6 +27,7 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.View
         public Button viewButton;
         public Button deleteButton;
 
+        //view holder's constructor for the watchlist adapter
         public ViewHolder(View itemView, final ClickListeners listeners) {
             super(itemView);
             watchListTitleTv= itemView.findViewById(R.id.watch_title);

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
+    //method for navigating to each menu options and replacing the fragment for each
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //method which utilises a fragment manager to replace fragments between each menu
     private void replaceFragment(Fragment nextFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         replaceFragment(dashBoardFragment);
     }
 
+    //method for saving person id and first name inside a preference instance, so that it could be accessed globally within the app
     protected void saveData(Bundle bundle){
         SharedPreferences sf = getSharedPreferences("dashboardPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sf.edit();

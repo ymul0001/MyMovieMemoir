@@ -57,6 +57,7 @@ public class MemoirDetails extends AppCompatActivity {
         networkConnection = new NetworkConnection();
     }
 
+    //method for getting movie details from the movieDB by movie id
     private class GetMovieDetailsTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
@@ -64,6 +65,7 @@ public class MemoirDetails extends AppCompatActivity {
             return result;
         }
 
+        //on post will apply the details into each view
         @Override
         protected void onPostExecute(String jsonResult) {
             JSONObject obj = null;

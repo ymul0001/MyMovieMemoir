@@ -30,6 +30,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         public TextView movieTitleTv;
         public TextView movieReleaseTv;
 
+        //view holder constructor for the search adapter
         public ViewHolder(View itemView) {
             super(itemView);
             movieIv = itemView.findViewById(R.id.moviedb_image);
@@ -50,7 +51,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         this.listener = listener;
     }
 
-    //can comment this code
     public void addMovies(List<MovieResult> resultItems) {
         this.movieItems = resultItems;
         notifyDataSetChanged();
@@ -79,6 +79,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         final MovieResult item = movieItems.get(position);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         SimpleDateFormat inputDf = new SimpleDateFormat("yyyy-MM-dd");
+
         // viewholder binding with its data at the specified position
         ImageView ivMovie = viewHolder.movieIv;
         TextView tvMovieTitle = viewHolder.movieTitleTv;
