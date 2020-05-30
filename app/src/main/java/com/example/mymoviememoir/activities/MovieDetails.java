@@ -69,16 +69,14 @@ public class MovieDetails extends AppCompatActivity {
         watchlistViewModel.initializeVars(getApplication());
 
         //get movie ids for getting movie details
-        Intent fromSearchFragment = getIntent();
-        Bundle bundle = fromSearchFragment.getExtras();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
         movieId = bundle.getInt("movieId");
-        SharedPreferences sf = getSharedPreferences("shared_prefss", MODE_PRIVATE);
-        sf.getInt("movieId", 0);
-        if (movieId == sf.getInt("movieId", 0)) {
+        if (bundle.get("alpha") != null)
+        {
             watchListButton.setEnabled(false);
             watchListButton.setAlpha(.5f);
         }
-        //get movie details
         GetMovieDetailsTask getMovieDetailsTask = new GetMovieDetailsTask();
         getMovieDetailsTask.execute();
 
@@ -132,6 +130,7 @@ public class MovieDetails extends AppCompatActivity {
                                                     Toast.LENGTH_LONG).show();
                                         }
                                     });
+                                    dialog.cancel();
                                 }
                             })
                             // dismissing the dialog by specifying null for the listener argument
@@ -142,7 +141,7 @@ public class MovieDetails extends AppCompatActivity {
                     watchlistViewModel.insert(newWatchList);
                     Toast.makeText(getApplicationContext(), "Successfully added the movie to watchlist!",
                             Toast.LENGTH_LONG).show();
-                    saveData();
+                    /*saveData();*/
                 }
             }
         });
@@ -230,11 +229,4 @@ public class MovieDetails extends AppCompatActivity {
             }
         }
     }
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_prefss", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("movieId", movieId);
-        editor.apply();
-    }
-
 }

@@ -116,10 +116,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 e.printStackTrace();
             }
             LatLng coordinates = getLocationFromAddress(address + state + postcode);
-
             userLatitude = coordinates.latitude;
             userLongitude = coordinates.longitude;
-            Log.d("string", userLatitude + "," + userLongitude);
             return "person location has been retrieved";
         }
 
@@ -134,6 +132,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 gMaps.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,
                         zoomLevel));
                 Toast.makeText(getContext(), message,
+                        Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(getContext(), "There is an error with the map system!",
                         Toast.LENGTH_LONG).show();
             }
         }

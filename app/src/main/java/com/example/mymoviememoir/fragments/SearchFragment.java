@@ -118,9 +118,6 @@ public class SearchFragment extends Fragment {
             movieRv.setLayoutManager(layoutManager);
         }
 
-        private void initView(){
-
-        }
 }
     //separate method for triggering click listener for the recycler view
     private void setOnClickListener(final ArrayList<MovieResult> results) {

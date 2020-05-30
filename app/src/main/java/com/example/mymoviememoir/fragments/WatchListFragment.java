@@ -81,6 +81,7 @@ public class WatchListFragment extends Fragment {
                 Intent toMovieDetails = new Intent(getContext(), MovieDetails.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("movieId", watchlistItems.get(position).getMovieId());
+                bundle.putFloat("alpha", (float) 0.5);
                 toMovieDetails.putExtras(bundle);
                 startActivity(toMovieDetails);
             }
@@ -95,7 +96,6 @@ public class WatchListFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // Continue with delete operation
                         watchlistViewModel.delete(watchlistItems.get(position));
-                        sf.edit().remove("movieId").commit();
                     }
                 })
 
