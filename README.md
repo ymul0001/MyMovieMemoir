@@ -4,16 +4,16 @@ project was completed as a pre-requisite to pass the FIT5046 Mobile Distributed 
 
 # Sample screenshots
 <p float="left">
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/login.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/registration.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/Dashboard.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/memoirsearch.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/moviedetails.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/moviesearch.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/watchlist.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/memoir.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/charts.JPG?raw=true" width="350" />
-  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/location.JPG?raw=true" width="350" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/login.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/registration.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/Dashboard.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/memoirsearch.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/moviedetails.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/moviesearch.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/watchlist.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/memoir.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/charts.JPG?raw=true" width="250" />
+  <img src="https://github.com/ymul0001/MyMovieMemoir/blob/master/screenshots/location.JPG?raw=true" width="250" />
 </p>
 
 # Installation
